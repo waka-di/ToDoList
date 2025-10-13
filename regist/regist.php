@@ -30,22 +30,38 @@
 <main class="regist">
     <div class="regist-container">
         <h1>アカウント登録</h1>
-            <form action="register_confirm.php" method="post" class="register-form">
+            <?php
+                session_start();
+                $errors = $_SESSION['errors'] ?? [];
+                unset($_SESSION['errors']);
+                $user_name = $_SESSION['user_name'] ?? '';
+                $mail = $_SESSION['mail'] ?? '';
+                $password = $_SESSION['password'] ?? '';
+            ?>
+            <form action="regist_confirm.php" method="post" class="regist-form">
                 <div class="form-row">
-                    <label for="user_name">ニックネーム　：</label>
-                    <input type="text" id="user_name" name="user_name">
+                    <label for="user_name">ニックネーム：</label>
+                    <input type="text" id="user_name" name="user_name" value="<?= htmlspecialchars($user_name) ?>">
                 </div>
-                
-                <div class="form-row">
-                    <label for="mail">メールアドレス：</label>
-                    <input type="email" id="mail" name="mail">
-                </div>
+                <?php if (isset($errors['user_name'])): ?>
+                    <span class="error"><?= htmlspecialchars($errors['user_name']) ?></span>
+                <?php endif; ?>
 
                 <div class="form-row">
-                    <label for="password">パスワード　　：</label>
-                    <input type="password" id="password" name="password">
-                    <p>
+                    <label for="mail">メールアドレス：</label>
+                    <input type="email" id="mail" name="mail" value="<?= htmlspecialchars($mail) ?>">
                 </div>
+                <?php if (isset($errors['mail'])): ?>
+                    <span class="error"><?= htmlspecialchars($errors['mail']) ?></span>
+                <?php endif; ?>
+
+                <div class="form-row">
+                    <label for="password">パスワード：</label>
+                    <input type="password" id="password" name="password">
+                </div>
+                <?php if (isset($errors['password'])): ?>
+                    <span class="error"><?= htmlspecialchars($errors['password']) ?></span>
+                <?php endif; ?>
                 <input type="submit" value="確認する">
             </form>
     </div>

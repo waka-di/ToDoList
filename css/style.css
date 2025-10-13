@@ -92,15 +92,21 @@ background-color: azure;
     justify-content: center;
     height: 100vh;
 }
-.register-form {
+.regist-form {
     max-width: 500px;
     text-align: center;
+}
+
+.regist input[type="submit"] {
+    display: block; 
+    margin: 20px auto 0; 
 }
 
 .form-row {
     display: flex; 
     align-items: center; 
-    margin-bottom: 12px;
+    margin-bottom: 4px;
+    flex-wrap: wrap;
 }
 
 .form-row label {
@@ -135,10 +141,17 @@ background-color: azure;
     transition: background-color 0.3s, border-color 0.3s;
 }
 
-/* ホバー時 */
-input[type="submit"]:hover {
+.regist input[type="submit"]:hover {
     background-color: #0056b3; 
     border-color: #0056b3;
+}
+
+.error {
+    color: red;
+    font-size: 13px;
+    margin-left: 150px;
+    margin-top: 4px;
+    display: block;
 }
 
 /* フッター */
