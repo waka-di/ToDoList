@@ -30,10 +30,22 @@
 <main class="regist">
     <div class="regist-container">
         <h1>アカウント登録</h1>
-            <form action="regis_confirm.php" method="post">
-                <input type="text" name="user_name" placeholder="ニックネーム"><br>
-                <input type="email" name="mail" placeholder="メールアドレス"><br>
-                <input type="password" name="password" placeholder="パスワード"><br>
+            <form action="register_confirm.php" method="post" class="register-form">
+                <div class="form-row">
+                    <label for="user_name">ニックネーム　：</label>
+                    <input type="text" id="user_name" name="user_name">
+                </div>
+                
+                <div class="form-row">
+                    <label for="mail">メールアドレス：</label>
+                    <input type="email" id="mail" name="mail">
+                </div>
+
+                <div class="form-row">
+                    <label for="password">パスワード　　：</label>
+                    <input type="password" id="password" name="password">
+                    <p>
+                </div>
                 <input type="submit" value="確認する">
             </form>
     </div>

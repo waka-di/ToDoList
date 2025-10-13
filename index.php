@@ -25,7 +25,7 @@
 <!-- ヘッダー -->
 <header class="header">
     <div class="regist_link">
-        <a href="#">新規登録はこちらから</a>
+        <a href="regist\regist.php">新規登録はこちらから</a>
     </div>
 </header>
 
