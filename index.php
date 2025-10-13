@@ -24,13 +24,13 @@
 
 <!-- ヘッダー -->
 <header class="header">
-    <div class="regist">
+    <div class="regist_link">
         <a href="#">新規登録はこちらから</a>
     </div>
 </header>
 
 <!-- メイン -->
-<main class="main">
+<main class="top-main">
     <div class="top-container">
         <div class="title">
             <img src="images/logo.png" alt="WHO’S ToDo List">
@@ -42,19 +42,17 @@
                 <input type="submit" value="ログイン">
             </form>
         </div>
+        <div class="top-bottom-image">
+            <img src="images/top_image.png" alt="Let's take a look together">
+        </div>
     </div>
 </main>
 
 <!-- フッター -->
 <footer class="footer">
     <div class="container">
-<!-- コピーライト -->
         <small class="footer-copyright">Copyright © 2025 M/W's Portfolio. All Rights Reserved.</small>
     </div>
-
-    <!-- ページトップへ戻るボタン -->
-    <a href="#" class="button-to-top"><i class="bi bi-arrow-up-short"></i></a>
-
 </footer>
 
 <!-- jQuery -->
