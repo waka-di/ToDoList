@@ -66,25 +66,30 @@ if (!empty($errors)) {
     <div class="regist-confirm-container">
         <table>
             <tr>
-                <th>ニックネーム</th>
-                <td><?= htmlspecialchars($user_name, ENT_QUOTES, 'UTF-8') ?></td>
+                <th>表示名<br>（ニックネーム）</th>
+                <td>：<?= htmlspecialchars($user_name, ENT_QUOTES, 'UTF-8') ?></td>
             </tr>
             <tr>
                 <th>メールアドレス</th>
-                <td><?= htmlspecialchars($mail, ENT_QUOTES, 'UTF-8') ?></td>
+                <td>：<?= htmlspecialchars($mail, ENT_QUOTES, 'UTF-8') ?></td>
             </tr>
             <tr>
                 <th>パスワード</th>
-                <td><?= str_repeat('●', strlen($password)) ?></td>
+                <td>：<?= str_repeat('●', strlen($password)) ?></td>
             </tr>
         </table>
-
-        <form action="regist_complete.php" method="post">
-            <input type="submit" value="登録する">
-        </form>
-        <form action="regist.php" method="post">
-            <input type="submit" value="戻る">
-        </form>
+        <div class="precautions">
+            <p>※このサイトは皆様に楽しい一日を<br>過ごしていただくために作られました。<br>他の方を傷つけるような投稿や個人情報などを<br>投稿しないようお願い申し上げます。</p>
+        </div>
+        <div class="button-group">
+            <form action="regist.php" method="post">
+                <input type="submit" value="戻る">
+            </form>
+            <form action="regist_complete.php" method="post">
+                <input type="submit" value="登録する">
+            </form>
+            
+        </div>
     </div>
 </main>
 

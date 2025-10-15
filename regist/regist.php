@@ -49,7 +49,7 @@
 
                 <div class="form-row">
                     <label for="mail">メールアドレス：</label>
-                    <input type="email" id="mail" name="mail" value="<?= htmlspecialchars($mail) ?>">
+                    <input type="text" id="mail" name="mail" value="<?= htmlspecialchars($mail) ?>">
                 </div>
                 <?php if (isset($errors['mail'])): ?>
                     <span class="error"><?= htmlspecialchars($errors['mail']) ?></span>
