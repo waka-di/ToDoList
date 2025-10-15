@@ -1,33 +1,3 @@
-<?php
-session_start();
-
-$user_name = $_POST['user_name'] ?? '';
-$mail = $_POST['mail'] ?? '';
-$password = $_POST['password'] ?? '';
-
-$errors = [];
-
-// バリデーション
-if (trim($user_name) === '') $errors['user_name'] = 'ニックネームを入力してください';
-if (trim($mail) === '') $errors['mail'] = 'メールアドレスを入力してください';
-elseif (!preg_match("/^[a-zA-Z0-9@\-\.]+$/", $mail)) $errors['mail'] = 'メールアドレスは半角英数字、@、-、.のみ可能';
-if (trim($password) === '') $errors['password'] = 'パスワードを入力してください';
-elseif (!preg_match("/^[a-zA-Z0-9]+$/", $password)) $errors['password'] = 'パスワードは半角英数字のみ可能';
-
-$_SESSION['user_name'] = $user_name;
-$_SESSION['mail'] = $mail;
-$_SESSION['password'] = $password;
-
-// エラーがあればフォームに戻す
-if (!empty($errors)) {
-    $_SESSION['errors'] = $errors;  // セッションにエラーを保存
-    header('Location: regist.php');
-    exit;
-}
-
-// エラーなし → 確認画面表示
-?>
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -57,6 +27,35 @@ if (!empty($errors)) {
 </header>
 
 <!-- メイン -->
+ <?php
+session_start();
+
+$user_name = $_POST['user_name'] ?? '';
+$mail = $_POST['mail'] ?? '';
+$password = $_POST['password'] ?? '';
+
+$errors = [];
+
+// バリデーション
+if (trim($user_name) === '') $errors['user_name'] = 'ニックネームを入力してください';
+if (trim($mail) === '') $errors['mail'] = 'メールアドレスを入力してください';
+elseif (!preg_match("/^[a-zA-Z0-9@\-\.]+$/", $mail)) $errors['mail'] = 'メールアドレスは半角英数字、@、-、.のみ可能';
+if (trim($password) === '') $errors['password'] = 'パスワードを入力してください';
+elseif (!preg_match("/^[a-zA-Z0-9]+$/", $password)) $errors['password'] = 'パスワードは半角英数字のみ可能';
+
+$_SESSION['user_name'] = $user_name;
+$_SESSION['mail'] = $mail;
+$_SESSION['password'] = $password;
+
+// エラーがあればフォームに戻す
+if (!empty($errors)) {
+    $_SESSION['errors'] = $errors;  // セッションにエラーを保存
+    header('Location: regist.php');
+    exit;
+}
+
+// エラーなし → 確認画面表示
+?>
 <main class="regist-confirm">
     <div class="regist-confirm-container">
         <?php if (!empty($errors)): ?>
