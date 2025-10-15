@@ -28,9 +28,11 @@
 
 <!-- メイン -->
 <main class="regist_complete">
+    
     <div class="regist-complete-container">
-        <h1>アカウント登録完了</h1>
-            
+        <p>登録完了しました！<br>ようこそ　<?php echo $user_name; ?>　さん</p>
+        <form action="main.php" method="get">
+        <input type="submit" value="メインページへ">
     </div>
 </main>
 

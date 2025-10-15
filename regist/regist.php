@@ -1,3 +1,11 @@
+<?php
+    session_start();
+    $errors = $_SESSION['errors'] ?? [];
+    unset($_SESSION['errors']);
+    $user_name = $_SESSION['user_name'] ?? '';
+    $mail = $_SESSION['mail'] ?? '';
+    $password = $_SESSION['password'] ?? '';
+?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -30,14 +38,6 @@
 <main class="regist">
     <div class="regist-container">
         <h1>アカウント登録</h1>
-            <?php
-                session_start();
-                $errors = $_SESSION['errors'] ?? [];
-                unset($_SESSION['errors']);
-                $user_name = $_SESSION['user_name'] ?? '';
-                $mail = $_SESSION['mail'] ?? '';
-                $password = $_SESSION['password'] ?? '';
-            ?>
             <form action="regist_confirm.php" method="post" class="regist-form">
                 <div class="form-row">
                     <label for="user_name">ニックネーム：</label>
