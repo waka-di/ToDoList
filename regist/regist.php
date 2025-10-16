@@ -2,9 +2,6 @@
     session_start();
     $errors = $_SESSION['errors'] ?? [];
     unset($_SESSION['errors']);
-    $user_name = $_SESSION['user_name'] ?? '';
-    $mail = $_SESSION['mail'] ?? '';
-    $password = $_SESSION['password'] ?? '';
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -58,7 +55,7 @@
                 <div class="form-row">
                     <label for="password">パスワード：</label>
                     <input type="password" id="password" name="password">
-                    <p>※パスワードは半角英数字、半角ハイフン、半角記号<br>（ハイフンとアットマーク）のみでご入力お願いいたします。</p>
+                    <p>※パスワードは半角英数字、半角ハイフン、半角記号（ハイフンとアットマーク）のみでご入力お願いいたします。</p>
                 </div>
                 <?php if (isset($errors['password'])): ?>
                     <span class="error"><?= htmlspecialchars($errors['password']) ?></span>

@@ -1,9 +1,7 @@
 <?php
-session_start();
-
-$user_name = $_POST['user_name'] ?? '';
-$mail = $_POST['mail'] ?? '';
-$password = $_POST['password'] ?? '';
+$user_name = trim($_POST['user_name'] ?? '');
+$mail = trim($_POST['mail'] ?? '');
+$password = trim($_POST['password'] ?? '');
 
 $errors = [];
 
@@ -21,10 +19,6 @@ if (trim($password) === '') {
 } elseif (!preg_match("/^[a-zA-Z0-9]+$/", $password)) {
     $errors['password'] = 'パスワードは半角英数字のみ可能です';
 }
-
-$_SESSION['user_name'] = $user_name;
-$_SESSION['mail'] = $mail;
-$_SESSION['password'] = $password;
 
 if (!empty($errors)) {
     $_SESSION['errors'] = $errors;
@@ -83,9 +77,15 @@ if (!empty($errors)) {
         </div>
         <div class="button-group">
             <form action="regist.php" method="post">
+                <input type="hidden" name="user_name" value="<?= htmlspecialchars($user_name) ?>">
+                <input type="hidden" name="mail" value="<?= htmlspecialchars($mail) ?>">
+                <input type="hidden" name="password" value="<?= htmlspecialchars($password) ?>">
                 <input type="submit" value="戻る">
             </form>
             <form action="regist_complete.php" method="post">
+                <input type="hidden" name="user_name" value="<?= htmlspecialchars($user_name) ?>">
+                <input type="hidden" name="mail" value="<?= htmlspecialchars($mail) ?>">
+                <input type="hidden" name="password" value="<?= htmlspecialchars($password) ?>">
                 <input type="submit" value="登録する">
             </form>
             

@@ -1,8 +1,23 @@
+<?php
+$user_name = $_POST['user_name'] ?? '';
+$mail = $_POST['mail'] ?? '';
+$password = $_POST['password'] ?? '';
+
+if ($user_name === '' || $mail === '' || $password === '') {
+    header('Location: regist.php');
+    exit;
+}
+
+ require_once '../db_connect.php';
+ $stmt = $pdo->prepare("INSERT INTO user_data (user_name, mail, password, insert_date) VALUES (?, ?, ?, NOW())");
+ $stmt->execute([$user_name, $mail, password_hash($password, PASSWORD_DEFAULT)]);
+?>
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>アカウント登録</title>
+<title>アカウント登録完了</title>
 
 <!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -28,7 +43,7 @@
 
 <!-- メイン -->
 <main class="regist-complete-container">
-        <p>登録完了しました！<br>ようこそ　<?php echo $user_name; ?>　さん</p>
+        <p>登録完了しました！<br>ようこそ　<?= htmlspecialchars($user_name) ?> 　さん</p>
         <form action="main.php" method="get">
         <input type="submit" value="メインページへ">
 </main>
