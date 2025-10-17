@@ -8,7 +8,7 @@ if ($user_name === '' || $mail === '' || $password === '') {
     exit;
 }
 
- require_once '../db_connect.php';
+ require_once '../confiig/db.php';
  $stmt = $pdo->prepare("INSERT INTO user_data (user_name, mail, password, insert_date) VALUES (?, ?, ?, NOW())");
  $stmt->execute([$user_name, $mail, password_hash($password, PASSWORD_DEFAULT)]);
 ?>

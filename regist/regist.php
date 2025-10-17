@@ -2,6 +2,9 @@
     session_start();
     $errors = $_SESSION['errors'] ?? [];
     unset($_SESSION['errors']);
+
+    $user_name = $_POST['user_name'] ?? '';
+    $mail      = $_POST['mail'] ?? '';
 ?>
 <!DOCTYPE html>
 <html lang="ja">
