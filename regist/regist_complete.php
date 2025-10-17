@@ -8,7 +8,7 @@ if ($user_name === '' || $mail === '' || $password === '') {
     exit;
 }
 
- require_once '../confiig/db.php';
+ require_once '../config/db.php';
  $stmt = $pdo->prepare("INSERT INTO user_data (user_name, mail, password, insert_date) VALUES (?, ?, ?, NOW())");
  $stmt->execute([$user_name, $mail, password_hash($password, PASSWORD_DEFAULT)]);
 ?>
@@ -44,7 +44,7 @@ if ($user_name === '' || $mail === '' || $password === '') {
 <!-- メイン -->
 <main class="regist-complete-container">
         <p>登録完了しました！<br>ようこそ　<?= htmlspecialchars($user_name) ?> 　さん</p>
-        <form action="main.php" method="get">
+        <form action="../main.php" method="get">
         <input type="submit" value="メインページへ">
 </main>
 

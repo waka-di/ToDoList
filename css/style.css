@@ -214,6 +214,20 @@ input[type="submit"]:hover {
     border-color: #0056b3;
 }
 
+/* メインページ */
+.search table { 
+    border-collapse: collapse; 
+}
+.search th, .search  td { 
+    border: 1px solid #999; 
+    width: 50px; 
+    height: 50px; 
+    text-align: center; 
+}
+.search th { 
+    background: #f2f2f2; 
+}
+
 /* 変更画面 */
 .update-container {
     display: flex;
