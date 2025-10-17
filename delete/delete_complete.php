@@ -1,8 +1,23 @@
+<?php
+$user_name = $_POST['user_name'] ?? '';
+$mail = $_POST['mail'] ?? '';
+$password = $_POST['password'] ?? '';
+
+if ($user_name === '' || $mail === '' || $password === '') {
+    header('Location: regist.php');
+    exit;
+}
+
+ require_once '../config/db.php';
+ $stmt = $pdo->prepare("INSERT INTO user_data (user_name, mail, password, insert_date) VALUES (?, ?, ?, NOW())");
+ $stmt->execute([$user_name, $mail, password_hash($password, PASSWORD_DEFAULT)]);
+?>
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>アカウント削除</title>
+<title>アカウント削除完了</title>
 
 <!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,27 +42,10 @@
 </header>
 
 <!-- メイン -->
-<main class="delete">
-    <div class="delete-container">
-        <table>
-            <tr>
-                <th>表示名<br>（ニックネーム）</th>
-                <td>：<?= htmlspecialchars($user_name, ENT_QUOTES, 'UTF-8') ?></td>
-            </tr>
-            <tr>
-                <th>メールアドレス</th>
-                <td>：<?= htmlspecialchars($mail, ENT_QUOTES, 'UTF-8') ?></td>
-            </tr>
-        </table>
-        <div class="button-group">
-            <form action="regist_complete.php" method="post">
-                <input type="hidden" name="user_name" value="<?= htmlspecialchars($user_name) ?>">
-                <input type="hidden" name="mail" value="<?= htmlspecialchars($mail) ?>">
-                <input type="hidden" name="password" value="<?= htmlspecialchars($password) ?>">
-                <input type="submit" value="確認する">
-            </form>    
-        </div>
-    </div>
+<main class="delete-complete-container">
+        <p>登録完了しました！<br>ようこそ　<?= htmlspecialchars($user_name) ?> 　さん</p>
+        <form action="../index.php" method="get">
+        <input type="submit" value="ログインページへ">
 </main>
 
 <!-- フッター -->
