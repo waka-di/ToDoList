@@ -43,7 +43,7 @@
 
 <!-- フッター -->
 <footer class="footer">
-    <div class="container">
+    <div class="footer-container">
         <small class="footer-copyright">Copyright © 2025 M/W's Portfolio. All Rights Reserved.</small>
     </div>
 </footer>

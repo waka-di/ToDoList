@@ -98,7 +98,7 @@
 </header>
 
 <!-- メイン -->
-<main class="main-container container">
+<main class="main-container">
     <div class="calendar-container">
         <h1>Main Page</h1>
         <div class="search">

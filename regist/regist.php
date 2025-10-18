@@ -37,7 +37,6 @@
 <!-- メイン -->
 <main class="regist">
     <div class="regist-container container">
-        <h1>アカウント登録</h1>
             <form action="regist_confirm.php" method="post" class="regist-form">
                 <div class="form-row">
                     <label for="user_name">ニックネーム：</label>
@@ -70,7 +69,7 @@
 
 <!-- フッター -->
 <footer class="footer">
-    <div class="container">
+    <div class="footer-container">
         <small class="footer-copyright">Copyright © 2025 M/W's Portfolio. All Rights Reserved.</small>
     </div>
 </footer>

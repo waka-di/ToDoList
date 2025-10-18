@@ -7,6 +7,7 @@ html, body {
 body {
     display: flex;
     flex-direction: column;
+    align-items: center;
     font-family:'Murecho', sans-serif;
     background-image: url("../images/background.png");
     background-size: cover;
@@ -15,14 +16,9 @@ body {
     background-attachment: fixed;
 }
 
-.logo img {
-    width: 300px;
-    margin-left: 10px;
-    margin-top: 20px;
-    height: auto; 
-    text-align: left;
+header{
+    width: 100%;
 }
-
 .container {
     display: flex;
     flex-direction: column;
@@ -30,6 +26,14 @@ body {
     justify-content: center;
     height: 100vh;
     flex: 1;
+}
+
+.logo img {
+    width: 300px;
+    margin-left: 10px;
+    margin-top: 20px;
+    height: auto; 
+    text-align: left;
 }
 
 /* フッター */
@@ -41,6 +45,7 @@ body {
     padding-top: 5px;
     font-size: 20px;
     font-weight: bold;
+    width: 100%;
 }
 
 /* TOPページ */
@@ -55,6 +60,15 @@ body {
     justify-content: center; 
     align-items: center; 
     height: 100vh; 
+}
+
+.top-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    flex: 1;
 }
 
 .title img {
@@ -198,14 +212,6 @@ input[type="submit"]:hover {
 }
 
 /* 登録完了画面 */
-.regist-complete-container{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    flex: 1;
-}
 .regist-complete-container input[type="submit"] {
     padding: 8px 16px;          
     font-size: 16px; 
@@ -226,7 +232,10 @@ input[type="submit"]:hover {
     display: flex;
     justify-content: space-between;
     max-width: 82rem;
-    margin: 20px auto 50px;
+    width: 100%;
+    margin: 20px 0 50px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 .mypage_link{
@@ -239,8 +248,7 @@ input[type="submit"]:hover {
 .main-container {
     display: flex;
     justify-content: flex-start;
-    gap: 130px; 
-    max-width: 60rem;
+    gap: 108px; 
     margin: 20px auto 50px;
     flex: 1;
 }
@@ -260,8 +268,8 @@ input[type="submit"]:hover {
 }
 
 .calendar-container {
-  width: 37%;
-  margin-left: 82px;
+    width: 32%;
+    margin-left: 50px;
 }
 .calendar { 
     border-collapse: collapse; 
@@ -343,7 +351,6 @@ button:hover {
 
 
 /* 変更画面 */
-
 .update-form {
     max-width: 500px;
     text-align: center;
