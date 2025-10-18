@@ -36,7 +36,7 @@
             <img src="images/logo.png" alt="WHO’S ToDo List">
         </div>
         <div class="login">
-            <form action="login.php" method="post">
+            <form action="main.php" method="post">
                 <input type="email" name="mail" placeholder="メールアドレス" required>
                 <input type="password" name="password" placeholder="パスワード" required>
                 <input type="submit" value="ログイン">
@@ -55,10 +55,5 @@
     </div>
 </footer>
 
-<!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<!-- Slick -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
-<script src="./js/main.js"></script>
 </body>
 </html>
