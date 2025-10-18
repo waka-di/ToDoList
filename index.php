@@ -37,8 +37,8 @@
         </div>
         <div class="login">
             <form action="main.php" method="post">
-                <input type="email" name="mail" placeholder="メールアドレス" required>
-                <input type="password" name="password" placeholder="パスワード" required>
+                <input type="email" name="mail" placeholder="メールアドレス">
+                <input type="password" name="password" placeholder="パスワード">
                 <input type="submit" value="ログイン">
             </form>
         </div>

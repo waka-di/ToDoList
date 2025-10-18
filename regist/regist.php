@@ -3,8 +3,15 @@
     $errors = $_SESSION['errors'] ?? [];
     unset($_SESSION['errors']);
 
-    $user_name = $_POST['user_name'] ?? '';
-    $mail      = $_POST['mail'] ?? '';
+    $form_data = $_POST ?? ($_SESSION['form_data'] ?? ['user_name'=>'','mail'=>'']);
+    unset($_SESSION['form_data']);
+
+    $user_name = $form_data['user_name'];
+    $mail      = $form_data['mail'];
+
+    if (!empty($_POST['from_confirm'])) {
+    $_SESSION['from_confirm'] = true;
+}
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -37,10 +44,13 @@
 <!-- メイン -->
 <main class="regist">
     <div class="regist-container container">
-            <form action="regist_confirm.php" method="post" class="regist-form">
+            <form action="regist_confirm.php" method="post" class="regist-form" autocomplete="off">
+                <input type="text" style="display:none" autocomplete="off">
+                <input type="password" style="display:none" autocomplete="new-password">
+
                 <div class="form-row">
                     <label for="user_name">ニックネーム：</label>
-                    <input type="text" id="user_name" name="user_name" value="<?= htmlspecialchars($user_name) ?>">
+                    <input type="text" id="user_name" name="user_name" value="<?= htmlspecialchars($user_name) ?>" autocomplete="off">
                 </div>
                 <?php if (isset($errors['user_name'])): ?>
                     <span class="error"><?= htmlspecialchars($errors['user_name']) ?></span>
@@ -48,7 +58,7 @@
 
                 <div class="form-row">
                     <label for="mail">メールアドレス：</label>
-                    <input type="text" id="mail" name="mail" value="<?= htmlspecialchars($mail) ?>">
+                    <input type="text" id="mail" name="mail" value="<?= htmlspecialchars($mail) ?>" autocomplete="off">
                 </div>
                 <?php if (isset($errors['mail'])): ?>
                     <span class="error"><?= htmlspecialchars($errors['mail']) ?></span>
@@ -56,8 +66,12 @@
 
                 <div class="form-row">
                     <label for="password">パスワード：</label>
-                    <input type="password" id="password" name="password">
+                    <input type="password" id="password" name="password" value="" autocomplete="new-password">
                     <p>※パスワードは半角英数字、半角ハイフン、半角記号（ハイフンとアットマーク）のみでご入力お願いいたします。</p>
+                    <?php if (!empty($_SESSION['from_confirm'])): ?>
+                        <span class="notice">※確認画面から戻った場合は、パスワードを再入力してください</span>
+                    <?php endif; ?>
+                    <?php unset($_SESSION['from_confirm']); ?>
                 </div>
                 <?php if (isset($errors['password'])): ?>
                     <span class="error"><?= htmlspecialchars($errors['password']) ?></span>
@@ -76,8 +90,5 @@
 
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<!-- Slick -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
-<script src="../js/main.js"></script>
 </body>
 </html>

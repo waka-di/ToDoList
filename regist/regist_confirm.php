@@ -1,27 +1,35 @@
 <?php
-$user_name = trim($_POST['user_name'] ?? '');
-$mail = trim($_POST['mail'] ?? '');
-$password = trim($_POST['password'] ?? '');
+    if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+        header('Location: index.php');
+        exit;
+    }
+    $user_name = trim($_POST['user_name'] ?? '');
+    $mail = trim($_POST['mail'] ?? '');
+    $password = trim($_POST['password'] ?? '');
 
-$errors = [];
+    $errors = [];
 
-// バリデーション
-if (trim($user_name) === '') {
-    $errors['user_name'] = 'ニックネームを入力してください';
-}
-if (trim($mail) === '') {
-    $errors['mail'] = 'メールアドレスを入力してください';
-} elseif (!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
-    $errors['mail'] = '正しいメールアドレスを入力してください';
-}
-if (trim($password) === '') {
-    $errors['password'] = 'パスワードを入力してください';
-} elseif (!preg_match("/^[a-zA-Z0-9]+$/", $password)) {
-    $errors['password'] = 'パスワードは半角英数字のみ可能です';
-}
+    // バリデーション
+    if (trim($user_name) === '') {
+        $errors['user_name'] = 'ニックネームを入力してください';
+    }
+    if (trim($mail) === '') {
+        $errors['mail'] = 'メールアドレスを入力してください';
+    } elseif (!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
+        $errors['mail'] = '正しいメールアドレスを入力してください';
+    }
+    if (trim($password) === '') {
+        $errors['password'] = 'パスワードを入力してください';
+    } elseif (!preg_match("/^[a-zA-Z0-9]+$/", $password)) {
+        $errors['password'] = 'パスワードは半角英数字のみ可能です';
+    }
 
 if (!empty($errors)) {
     $_SESSION['errors'] = $errors;
+    $_SESSION['form_data'] = [
+        'user_name' => $user_name,
+        'mail'      => $mail
+    ];
     header('Location: regist.php');
     exit;
 }
@@ -79,7 +87,7 @@ if (!empty($errors)) {
             <form action="regist.php" method="post">
                 <input type="hidden" name="user_name" value="<?= htmlspecialchars($user_name) ?>">
                 <input type="hidden" name="mail" value="<?= htmlspecialchars($mail) ?>">
-                <input type="hidden" name="password" value="<?= htmlspecialchars($password) ?>">
+                <input type="hidden" name="from_confirm" value="1">
                 <input type="submit" value="戻る">
             </form>
             <form action="regist_complete.php" method="post">
