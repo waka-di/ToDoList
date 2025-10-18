@@ -57,7 +57,7 @@ if (!empty($errors)) {
 
 <!-- メイン -->
 <main class="update-confirm">
-    <div class="update-confirm-container">
+    <div class="update-confirm-container container">
         <table>
             <tr>
                 <th>表示名<br>（ニックネーム）</th>

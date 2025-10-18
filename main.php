@@ -98,7 +98,7 @@
 </header>
 
 <!-- メイン -->
-<main class="main-container">
+<main class="main-container container">
     <div class="calendar-container">
         <h1>Main Page</h1>
         <div class="search">
@@ -129,7 +129,7 @@
                     elseif ($w == 6) $class = 'sunday';
                     elseif (in_array($date, $holidayDates)) $class = 'holiday';
 
-                    echo "<td class='$class'>$day</td>";
+                     echo "<td class='$class' data-date='$date'>$day</td>";
 
                     if ($w == 6 && $day != $daysInMonth) echo "</tr><tr>";
                 }
@@ -176,9 +176,29 @@
                 const data = JSON.parse(response);
                 if (data.success) {
                     $('#todo_text').val('');
-                    const newPost = `<div class="post-item"><strong>${data.user_name}</strong>：${data.content}</div>`;
+                     const newPost = `<div class="post-item" data-date="${data.date}"><strong>${data.user_name}</strong>：${data.content}</div>`;
                     $('.post-container').prepend(newPost);
                 }
+            });
+        });
+
+        $('.calendar td').on('click', function() {
+            const date = $(this).data('date');
+            if (!date) return;
+
+            $.get('controller/calendarDATE.php', { date: date }, function(response) {
+                const data = typeof response === 'string' ? JSON.parse(response) : response;
+                $('.post-container .post-item').hide();
+                data.posts.forEach(post => {
+                    const selector = `.post-container .post-item[data-date="${date}"]`;
+                    if ($(selector).length) {
+                        $(selector).show();
+                    } 
+                    else {
+                        const html = `<div class="post-item" data-date="${date}"><strong>${post.user_name}</strong>：${post.content}</div>`;
+                        $('.post-container').append(html);
+                    }
+                });
             });
         });
     });

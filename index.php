@@ -31,7 +31,7 @@
 
 <!-- メイン -->
 <main class="top-main">
-    <div class="top-container">
+    <div class="top-container container">
         <div class="title">
             <img src="images/logo.png" alt="WHO’S ToDo List">
         </div>

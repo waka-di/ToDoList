@@ -28,7 +28,7 @@
 
 <!-- メイン -->
 <main class="mypage">
-    <div class="mypage-container">
+    <div class="mypage-container container">
         
     </div>
 </main>

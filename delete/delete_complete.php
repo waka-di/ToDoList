@@ -42,7 +42,7 @@ if ($user_name === '' || $mail === '' || $password === '') {
 </header>
 
 <!-- メイン -->
-<main class="delete-complete-container">
+<main class="delete-complete-container container">
         <p>登録完了しました！<br>ようこそ　<?= htmlspecialchars($user_name) ?> 　さん</p>
         <form action="../index.php" method="get">
         <input type="submit" value="ログインページへ">

@@ -28,7 +28,7 @@
 
 <!-- メイン -->
 <main class="delete-confirm">
-    <div class="delete-confirm-container">
+    <div class="delete-confirm-container container">
         <p>アカウントを削除すると<br>投稿閲覧も投稿もできなくなりますが、<br>よろしいですか？</p>
         <div class="button-group">
             <form action="delete.php" method="post">

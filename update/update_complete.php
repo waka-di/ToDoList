@@ -42,7 +42,7 @@ if ($user_name === '' || $mail === '' || $password === '') {
 </header>
 
 <!-- メイン -->
-<main class="update-complete-container">
+<main class="update-complete-container container">
         <p>変更完了しました！</p>
         <form action="main.php" method="get">
         <input type="submit" value="メインページへ">

@@ -36,7 +36,7 @@
 
 <!-- メイン -->
 <main class="regist">
-    <div class="regist-container">
+    <div class="regist-container container">
         <h1>アカウント登録</h1>
             <form action="regist_confirm.php" method="post" class="regist-form">
                 <div class="form-row">

@@ -33,7 +33,7 @@
 
 <!-- メイン -->
 <main class="update">
-    <div class="update-container">
+    <div class="update-container container">
         <h1>アカウント登録</h1>
             <form action="update_confirm.php" method="post" class="update-form">
                 <div class="form-row">

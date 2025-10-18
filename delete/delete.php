@@ -28,7 +28,7 @@
 
 <!-- メイン -->
 <main class="delete">
-    <div class="delete-container">
+    <div class="delete-container container">
         <table>
             <tr>
                 <th>表示名<br>（ニックネーム）</th>
