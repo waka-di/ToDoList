@@ -78,7 +78,7 @@ $startWeek = (date('w', $firstDay) + 6) % 7;
 
 <body>
 <!-- ヘッダー -->
-<header class="header">
+<header class="main-header">
     <div class="logo">
             <img src="images/logo.png" alt="WHO’S ToDo List">
     </div>
