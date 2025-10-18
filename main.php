@@ -1,60 +1,70 @@
 <?php
-session_start();
-require_once 'config/db.php';
+    session_start();
+    require_once 'config/db.php';
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $mail = $_POST['mail'];
-    $password = $_POST['password'];
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $mail = $_POST['mail'];
+        $password = $_POST['password'];
 
-    $stmt = $pdo->prepare("SELECT * FROM user_data WHERE mail = ?");
-    $stmt->execute([$mail]);
-    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        $stmt = $pdo->prepare("SELECT * FROM user_data WHERE mail = ?");
+        $stmt->execute([$mail]);
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    if ($user && password_verify($password, $user['password'])) {
-        $_SESSION['user_name'] = $user['user_name'];
-    } else {
-        header('Location: index.php?error=1');
+        if ($user && password_verify($password, $user['password'])) {
+            $_SESSION['user_id'] = $user['user_id']; 
+            $_SESSION['user_name'] = $user['user_name'];
+        } else {
+            header('Location: index.php?error=1');
+            exit;
+        }
+    }
+
+    if (!isset($_SESSION['user_id'])) {
+        header('Location: index.php');
         exit;
     }
-}
+    $user_name = $_SESSION['user_name'];
 
-if (!isset($_SESSION['user_name'])) {
-    header('Location: index.php');
-    exit;
-}
-$user_name = $_SESSION['user_name'];
+    require_once __DIR__ . '/vendor/autoload.php';
+    use Yasumi\Yasumi;
 
-require_once __DIR__ . '/vendor/autoload.php';
-use Yasumi\Yasumi;
+    // --- パラメータ受け取り ---
+    $year = isset($_GET['year']) ? (int)$_GET['year'] : date('Y');
+    $month = isset($_GET['month']) ? (int)$_GET['month'] : date('m');
 
-// --- パラメータ受け取り ---
-$year = isset($_GET['year']) ? (int)$_GET['year'] : date('Y');
-$month = isset($_GET['month']) ? (int)$_GET['month'] : date('m');
+    // --- 前月・翌月を計算 ---
+    $prevMonth = $month - 1;
+    $nextMonth = $month + 1;
+    $prevYear = $nextYear = $year;
 
-// --- 前月・翌月を計算 ---
-$prevMonth = $month - 1;
-$nextMonth = $month + 1;
-$prevYear = $nextYear = $year;
+    // --- 祝日 ---
+    $holidays = Yasumi::create('Japan', $year, 'ja_JP');
+    $holidayDates = [];
+    foreach ($holidays as $holiday) {
+        $holidayDates[] = $holiday->format('Y-n-j');
+    }
+    if ($prevMonth == 0) {
+        $prevMonth = 12;
+        $prevYear--;
+    }
+    if ($nextMonth == 13) {
+        $nextMonth = 1;
+        $nextYear++;
+    }
 
-// --- 祝日 ---
-$holidays = Yasumi::create('Japan', $year, 'ja_JP');
-$holidayDates = [];
-foreach ($holidays as $holiday) {
-    $holidayDates[] = $holiday->format('Y-n-j');
-}
-if ($prevMonth == 0) {
-    $prevMonth = 12;
-    $prevYear--;
-}
-if ($nextMonth == 13) {
-    $nextMonth = 1;
-    $nextYear++;
-}
+    // --- 月の最初の日 ---
+    $firstDay = strtotime("$year-$month-01");
+    $daysInMonth = date('t', $firstDay);
+    $startWeek = (date('w', $firstDay) + 6) % 7;
 
-// --- 月の最初の日 ---
-$firstDay = strtotime("$year-$month-01");
-$daysInMonth = date('t', $firstDay);
-$startWeek = (date('w', $firstDay) + 6) % 7;
+    $today = date('Y-m-d');
+    $stmt = $pdo->prepare("SELECT post_data.*, user_data.user_name 
+                        FROM post_data 
+                        JOIN user_data ON post_data.user_id = user_data.user_id 
+                        WHERE DATE(post_date) = ? 
+                        ORDER BY post_id DESC");
+    $stmt->execute([$today]);
+    $today_posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -137,7 +147,11 @@ $startWeek = (date('w', $firstDay) + 6) % 7;
         </div>
     </div>
         <div class="post-container">
-            <div id="postList" class="post-list">投稿はありません。</div>
+            <?php foreach($today_posts as $post): ?>
+                <div class="post-item">
+                    <strong><?= htmlspecialchars($post['user_name']) ?></strong>：<?= htmlspecialchars($post['content']) ?>
+                </div>
+            <?php endforeach; ?>
         </div>
 </main>
 
@@ -152,43 +166,22 @@ $startWeek = (date('w', $firstDay) + 6) % 7;
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
-    const today = new Date().toISOString().split('T')[0];
-    const posts = {};
+    $(function() {
+        $('#postBtn').on('click', function() {
+            const content = $('#todo_text').val().trim();
+            if (content === '') return;
 
-    // 投稿ボタン押下
-    $('#postBtn').on('click', function() {
-    const user = '<?= htmlspecialchars($user_name) ?>';
-    const text = $('#todo_text').val().trim();
-
-    if (!text) {
-        alert('やることを入力してください');
-        return;
-    }
-
-    if (!posts[today]) posts[today] = [];
-    posts[today].push({ user, text });
-
-    $('#todo_text').val('');
-    displayPosts(today);
+            $.post('controller/postDB.php', { content: content }, function(response) {
+            console.log(response);
+                const data = JSON.parse(response);
+                if (data.success) {
+                    $('#todo_text').val('');
+                    const newPost = `<div class="post-item"><strong>${data.user_name}</strong>：${data.content}</div>`;
+                    $('.post-container').prepend(newPost);
+                }
+            });
+        });
     });
-
-    // 投稿表示
-    function displayPosts(date) {
-    const list = $('#postList');
-    list.empty();
-
-    if (!posts[date] || posts[date].length === 0) {
-        list.text('投稿はありません。');
-        return;
-    }
-
-    posts[date].forEach(post => {
-        list.append(`<div class="post-item"><strong>${post.user}</strong>：${post.text}</div>`);
-    });
-    }
-
-    // ページ読み込み時に今日の投稿表示
-    displayPosts(today);
 </script>
 </body>
 </html>

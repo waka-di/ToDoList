@@ -326,6 +326,16 @@ button {
 button:hover {
     background: #45a049;
 }
+
+/* マイページ */
+.mypage-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
 /* 変更画面 */
 .update-container {
     display: flex;
@@ -350,6 +360,33 @@ button:hover {
 
 /* 変更完了画面 */
 .update-confirm-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+/* 削除画面 */
+.delete-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+/* 削除確認画面 */
+.delote-confirm-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+/* 削除完了画面 */
+.delete-confirm-container {
     display: flex;
     flex-direction: column;
     align-items: center;

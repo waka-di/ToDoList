@@ -1,5 +1,5 @@
 <?php
-class Post {
+class PostDTO {
     private $post_id;
     private $user_id;
     private $content;
