@@ -39,10 +39,10 @@ header{
 /* フッター */
 .footer{
     background-color: #e7e7e7;
-    height: 40px;
     color: white;
     text-align: center;
-    padding-top: 5px;
+    height: 40px;
+    line-height: 40px;
     font-size: 20px;
     font-weight: bold;
     width: 100%;
@@ -121,7 +121,7 @@ background-color: azure;
 
 /* 登録画面 */
 .regist-form {
-    max-width: 500px;
+    max-width: 404px;
     text-align: center;
 }
 
@@ -133,7 +133,8 @@ input[type="submit"] {
 .form-row {
     display: flex; 
     align-items: center; 
-    margin-bottom: 4px;
+    justify-content: flex-start; 
+    margin-bottom: 15px;
     flex-wrap: wrap;
 }
 
@@ -144,6 +145,7 @@ input[type="submit"] {
 }
 
 .form-row input {
+    max-width: 200px;
     background-color: azure;
     flex: 1;                    
     padding: 6px;
@@ -154,8 +156,9 @@ input[type="submit"] {
     transition: border-color 0.3s; 
 }
 .form-row p {
-    font-size: 10px;
-    margin-left: 128px;
+    font-size: 12px;
+    margin-left: 148px;
+    text-align: justify;
 }
 
 .form-row input:focus {
@@ -184,6 +187,11 @@ input[type="submit"]:hover {
     margin-left: 150px;
     margin-top: 4px;
     display: block;
+}
+
+.notice{
+    color: red;
+    font-size: 13px;
 }
 
 /* 登録確認画面 */
@@ -249,8 +257,13 @@ input[type="submit"]:hover {
     display: flex;
     justify-content: flex-start;
     gap: 108px; 
-    margin: 20px auto 50px;
+    margin: 20px 0 50px;
     flex: 1;
+    align-items: flex-start;
+    max-width: 82rem;
+    width: 100%;
+    padding-left: 100px;
+    padding-right: 100px;
 }
 .main-container, .mypage_link{
     font-family:'Caveat', sans-serif;
@@ -270,6 +283,7 @@ input[type="submit"]:hover {
 .calendar-container {
     width: 32%;
     margin-left: 50px;
+    min-width: 400px;
 }
 .calendar { 
     border-collapse: collapse; 
@@ -305,8 +319,10 @@ input[type="submit"]:hover {
 }
 
 .post-container {
+    flex-shrink: 0;
     width: 35%;
     padding: 10px;
+    border: 1px solid transparent;
 }
 .post-form {
     margin-top: 20px;

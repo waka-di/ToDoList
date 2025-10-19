@@ -20,8 +20,8 @@
     }
     if (trim($password) === '') {
         $errors['password'] = 'パスワードを入力してください';
-    } elseif (!preg_match("/^[a-zA-Z0-9]+$/", $password)) {
-        $errors['password'] = 'パスワードは半角英数字のみ可能です';
+    } elseif (!preg_match("/^[a-zA-Z0-9\-@]+$/", $password)) {
+    $errors['password'] = 'パスワードは半角英数字、ハイフン、アットマークのみ使用可能です';
     }
 
 if (!empty($errors)) {

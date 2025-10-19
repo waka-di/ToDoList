@@ -1,16 +1,29 @@
 <?php
-$user_name = $_POST['user_name'] ?? '';
-$mail = $_POST['mail'] ?? '';
-$password = $_POST['password'] ?? '';
+    session_start();
+    $user_name = $_POST['user_name'] ?? '';
+    $mail = $_POST['mail'] ?? '';
+    $password = $_POST['password'] ?? '';
 
-if ($user_name === '' || $mail === '' || $password === '') {
-    header('Location: regist.php');
-    exit;
-}
+    if ($user_name === '' || $mail === '' || $password === '') {
+        header('Location: ../index.php');
+        exit;
+    }
 
- require_once '../config/db.php';
- $stmt = $pdo->prepare("INSERT INTO user_data (user_name, mail, password, insert_date) VALUES (?, ?, ?, NOW())");
- $stmt->execute([$user_name, $mail, password_hash($password, PASSWORD_DEFAULT)]);
+    require_once '../config/db.php';
+
+    $stmt = $pdo->prepare("SELECT COUNT(*) FROM user_data WHERE mail = ?");
+    $stmt->execute([$mail]);
+    $count = $stmt->fetchColumn();
+
+    if ($count > 0) {
+        $_SESSION['errors']['mail'] = 'このメールアドレスは既に登録されています。';
+        $_SESSION['form_data'] = $_POST;
+        header('Location: regist.php');
+        exit;
+    }
+
+    $stmt = $pdo->prepare("INSERT INTO user_data (user_name, mail, password, insert_date) VALUES (?, ?, ?, NOW())");
+    $stmt->execute([$user_name, $mail, password_hash($password, PASSWORD_DEFAULT)]);
 ?>
 
 <!DOCTYPE html>
