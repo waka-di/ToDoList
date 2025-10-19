@@ -45,12 +45,14 @@ $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <div class="mypage-wrapper">
         <div class="mypage-container">
             <div class="sidebar">
-                <h3>過去の投稿</h3>
+                <h3>過去の投稿検索</h3>
                 <input type="month" id="searchMonth">
-                <button onclick="searchPosts()">検索</button>
+                <div class="search-button">
+                    <button onclick="searchPosts()">検索</button>
+                </div>
                 <div class="links">
-                    <a href="../update/update.php">アカウント情報変更</a>
-                    <a href="../delete/delete.php">アカウント情報削除</a>
+                    <a href="update/update.php">アカウント情報変更</a>
+                    <a href="delete/delete.php">アカウント情報削除</a>
                 </div>
             </div>
             <div class="post-list" id="postList">
@@ -80,7 +82,7 @@ $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     function confirmDelete(postId) {
         if (confirm('本当に削除しますか？')) {
-            fetch(`/delete_post.php?id=${postId}`, { method: 'POST' })
+            fetch(`controller/delete_postDB.php?id=${postId}`, { method: 'POST' })
             .then(response => response.json())
             .then(data => {
                 if(data.success){
