@@ -587,10 +587,31 @@ button:hover {
 }
 
 /* 変更確認画面 */
-
+.update-confirm-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 90vh;
+    padding-top: 100px;
+    flex: 1;
+}
 
 /* 変更完了画面 */
-
+.update-complete-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 90vh;
+    padding-top: 300px;
+    flex: 1;
+    font-family:'Hachi Maru Pop', sans-serif;
+    font-weight: bold;
+}
+.update-complete-container p{
+    font-size: 50px;
+}
 
 /* 削除画面 */
 
