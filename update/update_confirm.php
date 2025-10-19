@@ -1,16 +1,18 @@
 <?php
     session_start();
-    require_once '../config/db.php';
 
-    $user_id = $_SESSION['user_id'];
+    $user_id = $_SESSION['user_id'] ?? null;
+    if (!$user_id) {
+        header('Location: index.php');
+        exit;
+    }
 
     $user_name = trim($_POST['user_name'] ?? '');
     $mail = trim($_POST['mail'] ?? '');
     $password = trim($_POST['password'] ?? '');
 
-    $errors = [];
-
     // バリデーション
+    $errors = [];
     if (trim($user_name) === '') {
         $errors['user_name'] = 'ニックネームを入力してください';
     }
@@ -26,9 +28,11 @@
             $password_hash = password_hash($password, PASSWORD_DEFAULT);
         }
     }
-    header('Location: update_complete.php');
+    if ($errors) {
+    echo implode('<br>', $errors);
+    echo '<br><a href="update.php">戻る</a>';
     exit;
-
+}
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -62,11 +66,11 @@
         <table>
             <tr>
                 <th>表示名<br>（ニックネーム）</th>
-                <td>：<?= htmlspecialchars($user_name, ENT_QUOTES, 'UTF-8') ?></td>
+                <td>：<?= htmlspecialchars($user_name) ?></td>
             </tr>
             <tr>
                 <th>メールアドレス</th>
-                <td>：<?= htmlspecialchars($mail, ENT_QUOTES, 'UTF-8') ?></td>
+                <td>：<?= htmlspecialchars($mail) ?></td>
             </tr>
             <tr>
                 <th>パスワード</th>
@@ -91,8 +95,7 @@
                 <input type="hidden" name="mail" value="<?= htmlspecialchars($mail) ?>">
                 <input type="hidden" name="password" value="<?= htmlspecialchars($password) ?>">
                 <input type="submit" value="変更する">
-            </form>
-            
+            </form> 
         </div>
     </div>
 </main>

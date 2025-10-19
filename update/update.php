@@ -1,23 +1,25 @@
 <?php
-session_start();
-$user_id = $_SESSION['user_id'] ?? null;
-if (!$user_id) {
-    header('Location: index.php'); 
-    exit;
-}
-require_once '../config/db.php';
+    session_start();
+    require_once '../config/db.php';
 
-$stmt = $pdo->prepare("SELECT user_name, mail FROM user_data WHERE user_id = ?");
-$stmt->execute([$user_id]);
-$user = $stmt->fetch(PDO::FETCH_ASSOC);
+    $user_id = $_SESSION['user_id'] ?? null;
+    if (!$user_id) {
+        header('Location: index.php'); 
+        exit;
+    }
 
-if (!$user) {
-    echo "ユーザー情報が見つかりません。";
-    exit;
-}
+    $stmt = $pdo->prepare("SELECT user_name, mail FROM user_data WHERE user_id = ?");
+    $stmt->execute([$user_id]);
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-$user_name = $user['user_name'];
-$mail = $user['mail'];
+    if (!$user) {
+        echo "ユーザー情報が見つかりません。";
+        exit;
+    }
+
+    $user_name = $_POST['user_name'] ?? $user['user_name'];
+    $mail      = $_POST['mail'] ?? $user['mail'];
+    $password  = $_POST['password'] ?? '';
 ?>
 
 <!DOCTYPE html>
@@ -69,7 +71,7 @@ $mail = $user['mail'];
 
                 <div class="form-row">
                     <label for="password">パスワード：</label>
-                    <input type="password" id="password" name="password">
+                    <input type="text" id="password" name="password" value="<?= htmlspecialchars($password) ?>">
                     <p>※パスワードは変更する場合のみ<br>　入力してください</p>
                 </div>
                 <?php if (isset($errors['password'])): ?>

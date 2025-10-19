@@ -6,9 +6,9 @@
     $form_data = $_POST ?: ($_SESSION['form_data'] ?? []);
     unset($_SESSION['form_data']);
 
-    // 安全にデフォルト値を入れる
     $user_name = $form_data['user_name'] ?? '';
     $mail      = $form_data['mail'] ?? '';
+    $password  = $form_data['password'] ?? '';
 
     if (!empty($_POST['from_confirm'])) {
     $_SESSION['from_confirm'] = true;
@@ -67,12 +67,8 @@
 
                 <div class="form-row">
                     <label for="password">パスワード：</label>
-                    <input type="password" id="password" name="password" value="" autocomplete="new-password">
+                    <input type="password" id="password" name="password" value="<?= htmlspecialchars($password) ?>" autocomplete="new-password">
                     <p>※パスワードは半角英数字、半角ハイフン、<br>　アットマークでご入力お願いいたします。</p>
-                    <?php if (!empty($_SESSION['from_confirm'])): ?>
-                        <span class="notice">※確認画面から戻った場合は、パスワードを再入力してください。</span>
-                    <?php endif; ?>
-                    <?php unset($_SESSION['from_confirm']); ?>
                 </div>
                 <?php if (isset($errors['password'])): ?>
                     <span class="error"><?= htmlspecialchars($errors['password']) ?></span>

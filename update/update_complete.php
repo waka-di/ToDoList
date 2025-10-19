@@ -1,23 +1,25 @@
 <?php
-session_start();
-require_once '../config/db.php';
+    session_start();
+    require_once '../config/db.php';
 
-$user_id = $_SESSION['user_id'];
-$user_name = $_POST['user_name'] ?? '';
-$mail = $_POST['mail'] ?? '';
-$password = $_POST['password'] ?? '';
+    $user_id = $_SESSION['user_id'] ?? null;
+    if (!$user_id) {
+        header('Location: index.php');
+        exit;
+    }
 
-if ($password !== '') {
-    $password_hash = password_hash($password, PASSWORD_DEFAULT);
-    $stmt = $pdo->prepare("UPDATE user_data SET user_name=?, mail=?, password=? WHERE user_id=?");
-    $stmt->execute([$user_name, $mail, $password_hash, $user_id]);
-} else {
-    $stmt = $pdo->prepare("UPDATE user_data SET user_name=?, mail=? WHERE user_id=?");
-    $stmt->execute([$user_name, $mail, $user_id]);
-}
+    $user_name = $_POST['user_name'] ?? '';
+    $mail = $_POST['mail'] ?? '';
+    $password = $_POST['password'] ?? '';
 
-header('Location: update_complete.php');
-exit;
+    if ($password !== '') {
+        $password_hash = password_hash($password, PASSWORD_DEFAULT);
+        $stmt = $pdo->prepare("UPDATE user_data SET user_name=?, mail=?, password=? WHERE user_id=?");
+        $stmt->execute([$user_name, $mail, $password_hash, $user_id]);
+    } else {
+        $stmt = $pdo->prepare("UPDATE user_data SET user_name=?, mail=? WHERE user_id=?");
+        $stmt->execute([$user_name, $mail, $user_id]);
+    }
 ?>
 
 <!DOCTYPE html>
@@ -51,7 +53,7 @@ exit;
 <!-- メイン -->
 <main class="update-complete-container container">
         <p>変更完了しました！</p>
-        <form action="main.php" method="get">
+        <form action="../main.php" method="get">
         <input type="submit" value="メインページへ">
 </main>
 
@@ -64,8 +66,6 @@ exit;
 
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<!-- Slick -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
-<script src="../js/main.js"></script>
+
 </body>
 </html>

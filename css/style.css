@@ -199,11 +199,6 @@ input[type="submit"]:hover {
     display: block;
 }
 
-.notice{
-    color: red;
-    font-size: 13px;
-}
-
 /* 登録確認画面 */
 .regist-confirm-container {
     display: flex;

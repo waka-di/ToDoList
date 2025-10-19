@@ -87,6 +87,7 @@ if (!empty($errors)) {
             <form action="regist.php" method="post">
                 <input type="hidden" name="user_name" value="<?= htmlspecialchars($user_name) ?>">
                 <input type="hidden" name="mail" value="<?= htmlspecialchars($mail) ?>">
+                <input type="hidden" name="password" value="<?= htmlspecialchars($password) ?>">
                 <input type="hidden" name="from_confirm" value="1">
                 <input type="submit" value="戻る">
             </form>
