@@ -1,16 +1,23 @@
 <?php
+session_start();
+require_once '../config/db.php';
+
+$user_id = $_SESSION['user_id'];
 $user_name = $_POST['user_name'] ?? '';
 $mail = $_POST['mail'] ?? '';
 $password = $_POST['password'] ?? '';
 
-if ($user_name === '' || $mail === '' || $password === '') {
-    header('Location: regist.php');
-    exit;
+if ($password !== '') {
+    $password_hash = password_hash($password, PASSWORD_DEFAULT);
+    $stmt = $pdo->prepare("UPDATE user_data SET user_name=?, mail=?, password=? WHERE user_id=?");
+    $stmt->execute([$user_name, $mail, $password_hash, $user_id]);
+} else {
+    $stmt = $pdo->prepare("UPDATE user_data SET user_name=?, mail=? WHERE user_id=?");
+    $stmt->execute([$user_name, $mail, $user_id]);
 }
 
- require_once '../db_connect.php';
- $stmt = $pdo->prepare("INSERT INTO user_data (user_name, mail, password, insert_date) VALUES (?, ?, ?, NOW())");
- $stmt->execute([$user_name, $mail, password_hash($password, PASSWORD_DEFAULT)]);
+header('Location: update_complete.php');
+exit;
 ?>
 
 <!DOCTYPE html>

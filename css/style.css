@@ -209,7 +209,8 @@ input[type="submit"]:hover {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
+    padding-top: 150px;
     height: 100vh;
     flex: 1;
 }
@@ -508,9 +509,86 @@ button:hover {
 }
 
 /* 変更画面 */
+.update-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 90vh;
+    padding-top: 100px;
+    flex: 1;
+}
+
+.update-container h1{
+    font-family:'Hachi Maru Pop', sans-serif;
+    margin-bottom: 20px;
+}
+
 .update-form {
-    max-width: 500px;
+    max-width: 404px;
     text-align: center;
+}
+
+.update-form input[type="submit"] {
+    display: block; 
+    margin: 20px auto 0; 
+    padding: 8px 16px;          
+    font-size: 16px; 
+    color: #fff; 
+    background-color: #007BFF;
+    border: 2px solid #007BFF; 
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.update-form input[type="submit"]:hover {
+    background-color: #0056b3; 
+    border-color: #0056b3;
+}
+
+.update-form .form-row {
+    display: flex; 
+    align-items: center; 
+    justify-content: flex-start; 
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+.update-form .form-row label {
+    width: 140px; 
+    text-align: right;
+    margin-right: 10px; 
+}
+
+.update-form .form-row input {
+    max-width: 200px;
+    background-color: azure;
+    flex: 1;                    
+    padding: 6px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none; 
+    transition: border-color 0.3s; 
+}
+
+.update-form .form-row p {
+    font-size: 12px;
+    margin-left: 148px;
+    text-align: justify;
+}
+
+.update-form .form-row input:focus {
+    border-color: #007BFF;
+}
+
+.update-form .error {
+    color: red;
+    font-size: 13px;
+    margin-left: 150px;
+    margin-top: 4px;
+    display: block;
 }
 
 /* 変更確認画面 */

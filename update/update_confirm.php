@@ -1,30 +1,33 @@
 <?php
-$user_name = trim($_POST['user_name'] ?? '');
-$mail = trim($_POST['mail'] ?? '');
-$password = trim($_POST['password'] ?? '');
+    session_start();
+    require_once '../config/db.php';
 
-$errors = [];
+    $user_id = $_SESSION['user_id'];
 
-// バリデーション
-if (trim($user_name) === '') {
-    $errors['user_name'] = 'ニックネームを入力してください';
-}
-if (trim($mail) === '') {
-    $errors['mail'] = 'メールアドレスを入力してください';
-} elseif (!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
-    $errors['mail'] = '正しいメールアドレスを入力してください';
-}
-if (trim($password) === '') {
-    $errors['password'] = 'パスワードを入力してください';
-} elseif (!preg_match("/^[a-zA-Z0-9]+$/", $password)) {
-    $errors['password'] = 'パスワードは半角英数字のみ可能です';
-}
+    $user_name = trim($_POST['user_name'] ?? '');
+    $mail = trim($_POST['mail'] ?? '');
+    $password = trim($_POST['password'] ?? '');
 
-if (!empty($errors)) {
-    $_SESSION['errors'] = $errors;
-    header('Location: regist.php');
+    $errors = [];
+
+    // バリデーション
+    if (trim($user_name) === '') {
+        $errors['user_name'] = 'ニックネームを入力してください';
+    }
+    if (trim($mail) === '') {
+        $errors['mail'] = 'メールアドレスを入力してください';
+    } elseif (!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
+        $errors['mail'] = '正しいメールアドレスを入力してください';
+    }
+    if ($password !== '') {
+        if (!preg_match("/^[a-zA-Z0-9]+$/", $password)) {
+            $errors['password'] = 'パスワードは半角英数字のみ可能です';
+        } else {
+            $password_hash = password_hash($password, PASSWORD_DEFAULT);
+        }
+    }
+    header('Location: update_complete.php');
     exit;
-}
 
 ?>
 <!DOCTYPE html>
@@ -40,8 +43,6 @@ if (!empty($errors)) {
 
 <!-- リセットCSS -->
 <link rel="stylesheet" href="https://unpkg.com/ress@4.0.0/dist/ress.min.css">
-<!-- Bootstrap Icons -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 
 <link rel="stylesheet" href="../css/style.css">
 
@@ -57,7 +58,7 @@ if (!empty($errors)) {
 
 <!-- メイン -->
 <main class="update-confirm">
-    <div class="update-confirm-container container">
+    <div class="update-confirm-container">
         <table>
             <tr>
                 <th>表示名<br>（ニックネーム）</th>
@@ -69,7 +70,13 @@ if (!empty($errors)) {
             </tr>
             <tr>
                 <th>パスワード</th>
-                <td>：<?= str_repeat('●', strlen($password)) ?></td>
+                <td>：
+                    <?php if ($password !== ''): ?>
+                        <?= str_repeat('●', strlen($password)) ?>
+                    <?php else: ?>
+                        （変更なし）
+                    <?php endif; ?>
+                </td>
             </tr>
         </table>
         <div class="button-group">

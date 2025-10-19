@@ -1,8 +1,25 @@
 <?php
-    session_start();
-    $errors = $_SESSION['errors'] ?? [];
-    unset($_SESSION['errors']);
+session_start();
+$user_id = $_SESSION['user_id'] ?? null;
+if (!$user_id) {
+    header('Location: index.php'); 
+    exit;
+}
+require_once '../config/db.php';
+
+$stmt = $pdo->prepare("SELECT user_name, mail FROM user_data WHERE user_id = ?");
+$stmt->execute([$user_id]);
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+if (!$user) {
+    echo "ユーザー情報が見つかりません。";
+    exit;
+}
+
+$user_name = $user['user_name'];
+$mail = $user['mail'];
 ?>
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -12,12 +29,10 @@
 <!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Murecho:wght@100..900&family=Noto+Sans+JP:wght@100..900&family=Outfit:wght@100..900&family=Playwrite+DE+Grund+Guides&family=Poppins:ital,wght@0,700;0,800;1,700;1,800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&&family=Hachi+Maru+Pop&family=Murecho:wght@100..900&family=Murecho:wght@100..900&family=Noto+Sans+JP:wght@100..900&family=Outfit:wght@100..900&family=Playwrite+DE+Grund+Guides&family=Poppins:ital,wght@0,700;0,800;1,700;1,800&display=swap" rel="stylesheet">
 
 <!-- リセットCSS -->
 <link rel="stylesheet" href="https://unpkg.com/ress@4.0.0/dist/ress.min.css">
-<!-- Bootstrap Icons -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 
 <link rel="stylesheet" href="../css/style.css">
 
@@ -33,8 +48,8 @@
 
 <!-- メイン -->
 <main class="update">
-    <div class="update-container container">
-        <h1>アカウント登録</h1>
+    <div class="update-container">
+        <h1>アカウント情報変更</h1>
             <form action="update_confirm.php" method="post" class="update-form">
                 <div class="form-row">
                     <label for="user_name">ニックネーム：</label>
@@ -55,6 +70,7 @@
                 <div class="form-row">
                     <label for="password">パスワード：</label>
                     <input type="password" id="password" name="password">
+                    <p>※パスワードは変更する場合のみ<br>　入力してください</p>
                 </div>
                 <?php if (isset($errors['password'])): ?>
                     <span class="error"><?= htmlspecialchars($errors['password']) ?></span>
@@ -73,8 +89,5 @@
 
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<!-- Slick -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
-<script src="../js/main.js"></script>
 </body>
 </html>
