@@ -55,7 +55,7 @@
 </header>
 
 <!-- メイン -->
-<main class="regist-complete-container container">
+<main class="regist-complete-container">
         <p>登録完了しました！<br>ようこそ　<?= htmlspecialchars($user_name) ?> 　さん</p>
         <form action="../main.php" method="get">
         <input type="submit" value="メインページへ">

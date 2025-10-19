@@ -65,7 +65,7 @@ if (!empty($errors)) {
 
 <!-- メイン -->
 <main class="regist-confirm">
-    <div class="regist-confirm-container container">
+    <div class="regist-confirm-container">
         <table>
             <tr>
                 <th>表示名<br>（ニックネーム）</th>

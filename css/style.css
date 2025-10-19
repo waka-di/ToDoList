@@ -19,14 +19,6 @@ body {
 header{
     width: 100%;
 }
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    flex: 1;
-}
 
 .logo img {
     width: 300px;
@@ -49,6 +41,15 @@ header{
 }
 
 /* TOPページ */
+.top-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    flex: 1;
+}
+
 .regist_link{
     font-family:'Murecho', sans-serif;
     text-align:right;
@@ -120,6 +121,15 @@ background-color: azure;
 }
 
 /* 登録画面 */
+.regist-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    flex: 1;
+}
+
 .regist-form {
     max-width: 404px;
     text-align: center;
@@ -195,6 +205,15 @@ input[type="submit"]:hover {
 }
 
 /* 登録確認画面 */
+.regist-confirm-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    flex: 1;
+}
+
 .regist-confirm-container .precautions{
     color: red;
     font-size: 15px;
@@ -220,6 +239,15 @@ input[type="submit"]:hover {
 }
 
 /* 登録完了画面 */
+.regist-complete-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    flex: 1;
+}
+
 .regist-complete-container input[type="submit"] {
     padding: 8px 16px;          
     font-size: 16px; 
@@ -264,7 +292,9 @@ input[type="submit"]:hover {
     width: 100%;
     padding-left: 100px;
     padding-right: 100px;
+    height: 100vh;
 }
+
 .main-container, .mypage_link{
     font-family:'Caveat', sans-serif;
 }
@@ -283,7 +313,7 @@ input[type="submit"]:hover {
 .calendar-container {
     width: 32%;
     margin-left: 50px;
-    min-width: 400px;
+    min-width: 352px;
 }
 .calendar { 
     border-collapse: collapse; 
@@ -364,7 +394,115 @@ button:hover {
 }
 
 /* マイページ */
+.mypage-header{
+    display: flex;
+    justify-content: space-between;
+    max-width: 82rem;
+    width: 100%;
+    margin: 20px 0 50px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
 
+.mainpage_link{
+    font-family:'Caveat', sans-serif;
+    text-align:right;
+    font-size: 25px;
+    padding-top: 5px;
+    font-weight: bold;
+}
+
+.mypage {
+    padding-top: 50px;
+    width: 100%;
+    font-family:'Hachi Maru Pop', sans-serif;
+}
+
+.mypage-container{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    gap: 20px;
+    box-sizing: border-box; 
+    padding-left: 200px;
+    padding-right: 200px;
+    min-height: 100vh;
+    height: auto;
+}
+
+.mypage-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.sidebar {
+    width: 25%;
+}
+
+.sidebar input[type="month"] {
+    width: 100%;
+    padding: 5px;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.sidebar button {
+    width: 100%;
+    padding: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.links {
+    margin-top: 20px;
+}
+
+.links a {
+    display: block;
+    margin-bottom: 10px;
+    text-decoration: none;
+    color: #007BFF;
+}
+
+.post-list {
+    width: 70%;
+}
+
+.mypost-item {
+    background: #fff;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;;
+    border: 1px solid #ccc;
+    gap: 10px;
+}
+
+.mypost-item div {
+    flex: 1;
+    word-break: break-word; 
+}
+
+.delete-btn {
+    background-color: #FF4B5C;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-weight: bold;
+    white-space: nowrap;
+    align-self: center;
+}
+
+.delete-btn:hover {
+    background-color: #e03b4c;
+}
 
 /* 変更画面 */
 .update-form {
