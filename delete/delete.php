@@ -60,7 +60,9 @@
                 <td>：<?= htmlspecialchars($mail, ENT_QUOTES, 'UTF-8') ?></td>
             </tr>
         </table>
-        <input type="submit" value="確認する">
+        <form action="delete_confirm.php" method="post">
+            <input type="submit" value="確認する">
+        </form>
     </div>
 </main>
 
