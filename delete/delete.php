@@ -1,3 +1,26 @@
+<?php
+    session_start();
+    require_once '../config/db.php';
+
+    $user_id = $_SESSION['user_id'] ?? null;
+    if (!$user_id) {
+        header('Location: index.php'); 
+        exit;
+    }
+
+    $stmt = $pdo->prepare("SELECT user_name, mail FROM user_data WHERE user_id = ?");
+    $stmt->execute([$user_id]);
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if (!$user) {
+        echo "ユーザー情報が見つかりません。";
+        exit;
+    }
+
+    $user_name = $_POST['user_name'] ?? $user['user_name'];
+    $mail      = $_POST['mail'] ?? $user['mail'];
+    $password  = $_POST['password'] ?? '';
+?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -7,12 +30,9 @@
 <!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Murecho:wght@100..900&family=Noto+Sans+JP:wght@100..900&family=Outfit:wght@100..900&family=Playwrite+DE+Grund+Guides&family=Poppins:ital,wght@0,700;0,800;1,700;1,800&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&&family=Hachi+Maru+Pop&family=Murecho:wght@100..900&family=Murecho:wght@100..900&family=Noto+Sans+JP:wght@100..900&family=Outfit:wght@100..900&family=Playwrite+DE+Grund+Guides&family=Poppins:ital,wght@0,700;0,800;1,700;1,800&display=swap" rel="stylesheet">
 <!-- リセットCSS -->
 <link rel="stylesheet" href="https://unpkg.com/ress@4.0.0/dist/ress.min.css">
-<!-- Bootstrap Icons -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 
 <link rel="stylesheet" href="../css/style.css">
 
@@ -28,7 +48,8 @@
 
 <!-- メイン -->
 <main class="delete">
-    <div class="delete-container container">
+    <div class="delete-container">
+        <h1>アカウント情報削除</h1>
         <table>
             <tr>
                 <th>表示名<br>（ニックネーム）</th>
@@ -39,14 +60,7 @@
                 <td>：<?= htmlspecialchars($mail, ENT_QUOTES, 'UTF-8') ?></td>
             </tr>
         </table>
-        <div class="button-group">
-            <form action="regist_complete.php" method="post">
-                <input type="hidden" name="user_name" value="<?= htmlspecialchars($user_name) ?>">
-                <input type="hidden" name="mail" value="<?= htmlspecialchars($mail) ?>">
-                <input type="hidden" name="password" value="<?= htmlspecialchars($password) ?>">
-                <input type="submit" value="確認する">
-            </form>    
-        </div>
+        <input type="submit" value="確認する">
     </div>
 </main>
 
@@ -59,8 +73,6 @@
 
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<!-- Slick -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
-<script src="../js/main.js"></script>
+
 </body>
 </html>
