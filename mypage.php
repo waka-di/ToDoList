@@ -72,7 +72,6 @@ $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
         const searchMonth = document.getElementById('searchMonth').value; // 例: "2025-10"
         const posts = document.querySelectorAll('.mypost-item');
         posts.forEach(post => {
-            // post.dataset.date に "YYYY-MM-DD" の形式で日付が入っている想定
             const postMonth = post.dataset.date.substring(0,7);
             post.style.display = (postMonth === searchMonth) ? 'flex' : 'none';
         });
