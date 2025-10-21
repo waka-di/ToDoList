@@ -1,15 +1,11 @@
 <?php
     session_start();
+    require_once '../config/db.php';
+    require_once '../controller/auth_check.php';
+
     $user_name = $_POST['user_name'] ?? '';
     $mail = $_POST['mail'] ?? '';
     $password = $_POST['password'] ?? '';
-
-    if ($user_name === '' || $mail === '' || $password === '') {
-        header('Location: ../index.php');
-        exit;
-    }
-
-    require_once '../config/db.php';
 
     $stmt = $pdo->prepare("SELECT COUNT(*) FROM user_data WHERE mail = ?");
     $stmt->execute([$mail]);
@@ -24,6 +20,10 @@
 
     $stmt = $pdo->prepare("INSERT INTO user_data (user_name, mail, password, insert_date) VALUES (?, ?, ?, NOW())");
     $stmt->execute([$user_name, $mail, password_hash($password, PASSWORD_DEFAULT)]);
+
+    $user_id = $pdo->lastInsertId();
+    $_SESSION['user_id'] = $user_id;
+    $_SESSION['user_name'] = $user_name;
 ?>
 
 <!DOCTYPE html>

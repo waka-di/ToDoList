@@ -94,7 +94,7 @@
     </div>
     <div class="page_link">
         <a href="mypage.php">My page</a>
-        <a href="logout.php">logout</a>
+        <a href="logout.php">Logout</a>
     </div>
 </header>
 

@@ -1,7 +1,8 @@
 <?php
     session_start();
     require_once '../config/db.php';
-
+    require_once '../controller/auth_check.php';
+    
     $user_id = $_SESSION['user_id'] ?? null;
     if (!$user_id) {
         header('Location: ../index.php');
@@ -11,6 +12,13 @@
     $user_name = $_POST['user_name'] ?? '';
     $mail = $_POST['mail'] ?? '';
     $password = $_POST['password'] ?? '';
+
+    if ($count > 0) {
+        $_SESSION['errors']['mail'] = 'このメールアドレスは既に登録されています。';
+        $_SESSION['form_data'] = $_POST;
+        header('Location: update.php');
+        exit;
+    }
 
     if ($password !== '') {
         $password_hash = password_hash($password, PASSWORD_DEFAULT);

@@ -1,3 +1,10 @@
+<?php
+    session_start();
+    if (!empty($_SESSION['error'])) {
+        echo '<p style="color:red">' . $_SESSION['error'] . '</p>';
+        unset($_SESSION['error']); 
+    }    
+?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -13,8 +20,6 @@
 
 <!-- リセットCSS -->
 <link rel="stylesheet" href="https://unpkg.com/ress@4.0.0/dist/ress.min.css">
-<!-- Bootstrap Icons -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 
 <link rel="stylesheet" href="./css/style.css">
 

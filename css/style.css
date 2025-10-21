@@ -193,7 +193,7 @@ input[type="submit"]:hover {
 
 .error {
     color: red;
-    font-size: 13px;
+    font-size: 12px;
     margin-left: 150px;
     margin-top: 4px;
     display: block;
