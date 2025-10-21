@@ -1,7 +1,12 @@
 <?php
     session_start();
     require_once '../config/db.php';
-    require_once '../controller/auth_check.php';
+
+    if ($user_name === '' || $mail === '' || $password === '') {
+        $_SESSION['error'] = '不正なアクセスです';
+        header('Location: ../index.php');
+        exit;
+    }
 
     $user_name = $_POST['user_name'] ?? '';
     $mail = $_POST['mail'] ?? '';

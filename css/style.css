@@ -620,6 +620,15 @@ button:hover {
 }
 
 /* 削除画面 */
+.delete-header{
+    display: flex;
+    justify-content: space-between;
+    max-width: 82rem;
+    width: 100%;
+    margin: 20px 0 50px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
 .delete-container {
     display: flex;
     flex-direction: column;

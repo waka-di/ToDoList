@@ -1,7 +1,6 @@
 <?php
     session_start();
     require_once '../config/db.php';
-    require_once 'auth_check.php';
 
     $user_id = $_SESSION['user_id'] ?? null;
     if (!$user_id) {
@@ -41,9 +40,12 @@
 
 <body>
 <!-- ヘッダー -->
-<header class="header">
+<header class="delete-header">
     <div class="logo">
             <img src="../images/logo.png" alt="WHO’S ToDo List">
+    </div>
+    <div class="mainpage_link">
+        <a href="main.php">main page</a>
     </div>
 </header>
 
