@@ -44,8 +44,8 @@
     <div class="logo">
             <img src="../images/logo.png" alt="WHO’S ToDo List">
     </div>
-    <div class="mainpage_link">
-        <a href="main.php">main page</a>
+    <div class="mypage_link">
+        <a href="../mypage.php">My page</a>
     </div>
 </header>
 
