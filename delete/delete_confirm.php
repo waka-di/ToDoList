@@ -45,9 +45,5 @@
         <small class="footer-copyright">Copyright © 2025 M/W's Portfolio. All Rights Reserved.</small>
     </div>
 </footer>
-
-<!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
 </body>
 </html>
