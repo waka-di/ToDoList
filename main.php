@@ -92,8 +92,9 @@
     <div class="logo">
             <img src="images/logo.png" alt="WHO’S ToDo List">
     </div>
-    <div class="mypage_link">
+    <div class="page_link">
         <a href="mypage.php">My page</a>
+        <a href="logout.php">logout</a>
     </div>
 </header>
 
