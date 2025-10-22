@@ -3,15 +3,32 @@
     require_once '../config/db.php';
 
     $user_id = $_SESSION['user_id'] ?? null;
+    
     if (!$user_id) {
+        $_SESSION['error'] = "不正なアクセスです";
         header('Location: ../index.php');
         exit;
     }
 
+try {
+    $stmt = $pdo->prepare("DELETE FROM post_data WHERE user_id=?");
+    $stmt->execute([$user_id]);
+
     $stmt = $pdo->prepare("DELETE FROM user_data WHERE user_id=?");
     $stmt->execute([$user_id]);
 
+    $pdo->commit();
+
     session_destroy();
+
+} 
+atch (PDOException $e) {
+    $pdo->rollBack();
+
+    $_SESSION['error_message'] = "エラーが発生したためアカウント削除できません。";
+    header('Location: ../index.php');
+    exit;
+}
 ?>
 
 <!DOCTYPE html>
