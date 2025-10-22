@@ -1,7 +1,7 @@
 <?php
+    session_start();
     require_once 'config/db.php';
-    require_once 'controller/auth_check.php'; 
-
+    
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $mail = $_POST['mail'];
         $password = $_POST['password'];
@@ -23,6 +23,7 @@
         header('Location: index.php');
         exit;
     }
+
     $user_name = $_SESSION['user_name'];
 
     require_once __DIR__ . '/vendor/autoload.php';
