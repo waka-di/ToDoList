@@ -1,12 +1,20 @@
 <?php
+session_start();
 require_once 'config/db.php'; 
-require_once 'controller/auth_check.php'; 
+
+if (!isset($_SESSION['user_id'])) {
+    $_SESSION['error_message'] = "不正なアクセスです";
+    header('Location: index.php');
+    exit;
+}
 
 $user_id = $_SESSION['user_id']; 
 
 $stmt = $pdo->prepare("SELECT post_id, content, post_date FROM post_data WHERE user_id = ? ORDER BY post_date DESC");
 $stmt->execute([$user_id]);
 $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
 ?>
 
 <!DOCTYPE html>

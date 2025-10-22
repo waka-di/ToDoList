@@ -510,6 +510,16 @@ button:hover {
 }
 
 /* 変更画面 */
+.update-header{
+    display: flex;
+    justify-content: space-between;
+    max-width: 82rem;
+    width: 100%;
+    margin: 20px 0 50px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
 .update-container {
     display: flex;
     flex-direction: column;

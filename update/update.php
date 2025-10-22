@@ -42,9 +42,12 @@
 
 <body>
 <!-- ヘッダー -->
-<header class="header">
+<header class="update-header">
     <div class="logo">
             <img src="../images/logo.png" alt="WHO’S ToDo List">
+    </div>
+    <div class="mypage_link">
+        <a href="../mypage.php">My page</a>
     </div>
 </header>
 
