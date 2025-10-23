@@ -205,18 +205,19 @@
             const date = $(this).data('date');
             if (!date) return;
 
-            $.get('controller/calendarDATE.php', { date: date }, function(response) {
+             $.get('controller/calendarDATE.php', { date: date }, function(response) {
                 const data = typeof response === 'string' ? JSON.parse(response) : response;
-                $('.post-container .post-item').hide();
+
+                $('.post-container').empty();
+
+                if (data.posts.length === 0) {
+                    $('.post-container').append('<div class="post-item">No Post</div>');
+                    return;
+                }
+
                 data.posts.forEach(post => {
-                    const selector = `.post-container .post-item[data-date="${date}"]`;
-                    if ($(selector).length) {
-                        $(selector).show();
-                    } 
-                    else {
-                        const html = `<div class="post-item" data-date="${date}"><strong>${post.user_name}</strong>：${post.content}</div>`;
-                        $('.post-container').append(html);
-                    }
+                    const html = `<div class="post-item" data-date="${date}"><strong>${post.user_name}</strong>：${post.content}</div>`;
+                    $('.post-container').append(html);
                 });
             });
         });
