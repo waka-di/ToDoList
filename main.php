@@ -1,30 +1,47 @@
 <?php
     session_start();
     require_once 'config/db.php';
+    $errors = [];
     
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $mail = $_POST['mail'];
         $password = $_POST['password'];
 
-        $stmt = $pdo->prepare("SELECT * FROM user_data WHERE mail = ?");
-        $stmt->execute([$mail]);
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        if ($user && password_verify($password, $user['password'])) {
-            $_SESSION['user_id'] = $user['user_id']; 
-            $_SESSION['user_name'] = $user['user_name'];
-        } else {
-            header('Location: index.php?error=1');
-            exit;
+        if (trim($mail) === '') {
+            $errors['mail'] = 'メールアドレスを入力してください';
+        } 
+        if (trim($password) === '') {
+            $errors['password'] = 'パスワードを入力してください';
         }
-    }
+
+        if (empty($errors)) {
+            $stmt = $pdo->prepare("SELECT * FROM user_data WHERE mail = ?");
+            $stmt->execute([$mail]);
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if ($user && password_verify($password, $user['password'])) {
+                $_SESSION['user_id'] = $user['user_id']; 
+                $_SESSION['user_name'] = $user['user_name'];
+                header('Location: main.php');
+                exit;
+            } 
+            else {
+                $_SESSION['error'] = 'エラーが発生したためログイン情報を取得できません。';
+                header('Location: index.php');
+                exit;
+            }
+        } 
+    $_SESSION['error'] = $errors;
+    header('Location: index.php');
+    exit;
+}
 
     if (!isset($_SESSION['user_id'])) {
         $_SESSION['error_message'] = "不正なアクセスです";
         header('Location: index.php');
         exit;
     }
-
+        
     $user_name = $_SESSION['user_name'];
 
     require_once __DIR__ . '/vendor/autoload.php';

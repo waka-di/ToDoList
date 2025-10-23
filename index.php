@@ -1,9 +1,20 @@
 <?php
     session_start();
-    if (!empty($_SESSION['error'])) {
-        echo '<p style="color:red">' . $_SESSION['error'] . '</p>';
-        unset($_SESSION['error']); 
-    }    
+    $errors = [];
+
+    if (!empty($_SESSION['error_message'])) {
+    echo '<p style="color:red; text-align:center;">' . htmlspecialchars($_SESSION['error_message']) . '</p>';
+    unset($_SESSION['error_message']);
+    }
+
+    if (!empty($_SESSION['error']) && is_array($_SESSION['error'])) {
+        $errors = $_SESSION['error'];
+        unset($_SESSION['error']);
+    } 
+    elseif (!empty($_SESSION['error'])) {
+        echo '<p style="color:red; text-align:center;">' . htmlspecialchars($_SESSION['error']) . '</p>';
+        unset($_SESSION['error']);
+    }
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -28,37 +39,43 @@
 <body>
 
 <!-- ヘッダー -->
-<header class="header">
-    <div class="regist_link">
-        <a href="regist\regist.php">新規登録はこちらから</a>
-    </div>
-</header>
-
-<!-- メイン -->
-<main class="top-main">
-    <div class="top-container">
-        <div class="title">
-            <img src="images/logo.png" alt="WHO’S ToDo List">
+    <header class="header">
+        <div class="regist_link">
+            <a href="regist\regist.php">新規登録はこちらから</a>
         </div>
-        <div class="login">
-            <form action="main.php" method="post">
-                <input type="email" name="mail" placeholder="メールアドレス">
-                <input type="password" name="password" placeholder="パスワード">
-                <input type="submit" value="ログイン">
-            </form>
-        </div>
-        <div class="top-bottom-image">
-            <img src="images/top_image.png" alt="Let's take a look together">
-        </div>
-    </div>
-</main>
+    </header>
 
-<!-- フッター -->
-<footer class="footer">
-    <div class="footer-container">
-        <small class="footer-copyright">Copyright © 2025 M/W's Portfolio. All Rights Reserved.</small>
-    </div>
-</footer>
+    <!-- メイン -->
+    <main class="top-main">
+        <div class="top-container">
+            <div class="title">
+                <img src="images/logo.png" alt="WHO’S ToDo List">
+            </div>
+            <div class="login">
+                <form action="main.php" method="post">
+                    <input type="email" name="mail" placeholder="メールアドレス">
+                    <?php if (isset($errors['mail'])): ?>
+                        <p style="color:red"><?= $errors['mail'] ?></p>
+                    <?php endif; ?>
 
+                    <input type="password" name="password" placeholder="パスワード">
+                    <?php if (isset($errors['password'])): ?>
+                        <p style="color:red"><?= $errors['password'] ?></p>
+                    <?php endif; ?>
+                    <input type="submit" value="ログイン">
+                </form>
+            </div>
+            <div class="top-bottom-image">
+                <img src="images/top_image.png" alt="Let's take a look together">
+            </div>
+        </div>
+    </main>
+
+    <!-- フッター -->
+    <footer class="footer">
+        <div class="footer-container">
+            <small class="footer-copyright">Copyright © 2025 M/W's Portfolio. All Rights Reserved.</small>
+        </div>
+    </footer>
 </body>
 </html>
