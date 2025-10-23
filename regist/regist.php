@@ -44,35 +44,41 @@
 
 <!-- メイン -->
 <main class="regist">
-    <div class="regist-container container">
+    <div class="regist-container">
             <form action="regist_confirm.php" method="post" class="regist-form" autocomplete="off">
                 <input type="text" style="display:none" autocomplete="off">
                 <input type="password" style="display:none" autocomplete="new-password">
 
                 <div class="form-row">
                     <label for="user_name">ニックネーム：</label>
-                    <input type="text" id="user_name" name="user_name" value="<?= htmlspecialchars($user_name) ?>" autocomplete="off">
+                    <div class="input-area">
+                        <input type="text" id="user_name" name="user_name" value="<?= htmlspecialchars($user_name) ?>" autocomplete="off">
+                        <?php if (isset($errors['user_name'])): ?>
+                             <span class="error"><?= $errors['user_name'] ?></span>
+                        <?php endif; ?>
+                    </div>
                 </div>
-                <?php if (isset($errors['user_name'])): ?>
-                    <span class="error"><?= htmlspecialchars($errors['user_name']) ?></span>
-                <?php endif; ?>
-
+                   
                 <div class="form-row">
                     <label for="mail">メールアドレス：</label>
-                    <input type="text" id="mail" name="mail" value="<?= htmlspecialchars($mail) ?>" autocomplete="off">
+                    <div class="input-area">
+                        <input type="text" id="mail" name="mail" value="<?= htmlspecialchars($mail) ?>" autocomplete="off">
+                        <?php if (isset($errors['mail'])): ?>
+                             <span class="error"><?= $errors['mail'] ?></span>
+                        <?php endif; ?>
+                    </div>
                 </div>
-                <?php if (isset($errors['mail'])): ?>
-                    <span class="error"><?= htmlspecialchars($errors['mail']) ?></span>
-                <?php endif; ?>
 
                 <div class="form-row">
                     <label for="password">パスワード：</label>
-                    <input type="password" id="password" name="password" value="<?= htmlspecialchars($password) ?>" autocomplete="new-password">
-                    <p>※パスワードは半角英数字、半角ハイフン、<br>　アットマークでご入力お願いいたします。</p>
+                    <div class="input-area">
+                        <input type="text" id="password" name="password" value="<?= htmlspecialchars($password) ?>" autocomplete="new-password">
+                        <p>※パスワードは半角英数字、半角ハイフン、<br>　アットマークでご入力お願いいたします。</p>
+                        <?php if (isset($errors['password'])): ?>
+                            <span class="error"><?= $errors['password'] ?></span>
+                        <?php endif; ?>
+                    </div>
                 </div>
-                <?php if (isset($errors['password'])): ?>
-                    <span class="error"><?= htmlspecialchars($errors['password']) ?></span>
-                <?php endif; ?>
                 <input type="submit" value="確認する">
             </form>
     </div>

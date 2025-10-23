@@ -1,8 +1,11 @@
 <?php
+    session_start();
+
     if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
         header('Location: index.php');
         exit;
     }
+
     $user_name = trim($_POST['user_name'] ?? '');
     $mail = trim($_POST['mail'] ?? '');
     $password = trim($_POST['password'] ?? '');
@@ -16,12 +19,12 @@
     if (trim($mail) === '') {
         $errors['mail'] = 'メールアドレスを入力してください';
     } elseif (!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
-        $errors['mail'] = '正しいメールアドレスを入力してください';
+        $errors['mail'] = '正しいメールアドレスを<br>入力してください';
     }
     if (trim($password) === '') {
         $errors['password'] = 'パスワードを入力してください';
     } elseif (!preg_match("/^[a-zA-Z0-9\-@]+$/", $password)) {
-    $errors['password'] = 'パスワードは半角英数字、ハイフン、アットマークのみ使用可能です';
+    $errors['password'] = 'パスワードは半角英数字、-、@のみ使用可能です';
     }
 
 if (!empty($errors)) {

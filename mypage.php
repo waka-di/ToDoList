@@ -41,7 +41,7 @@ $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <img src="images/logo.png" alt="WHO’S ToDo List">
     </div>
     <div class="mainpage_link">
-        <a href="main.php">main page</a>
+        <a href="main.php">Main page</a>
     </div>
 </header>
 

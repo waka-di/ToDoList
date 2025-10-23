@@ -100,11 +100,11 @@ header{
 
 .login input[type="email"],
 .login input[type="password"]{
-padding: 10px;
-font-size: 16px;
-border: 2px solid #ccc;
-border-radius: 6px;
-background-color: azure;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #ccc;
+    border-radius: 6px;
+    background-color: azure;
 }
 
 .login input[type="submit"] {
@@ -112,7 +112,7 @@ background-color: azure;
     font-weight: bold;
     font-size: 18px;
     border-radius: 6px;
-    background-color: rgb(82, 171, 223);
+    background-color: #0d9df056;
     cursor: pointer;
 }
 /* ホバー時 */
@@ -142,33 +142,49 @@ input[type="submit"] {
 
 .form-row {
     display: flex; 
-    align-items: center; 
-    justify-content: flex-start; 
+    align-items: flex-start; 
     margin-bottom: 15px;
-    flex-wrap: wrap;
 }
 
 .form-row label {
     width: 140px; 
     text-align: right;
     margin-right: 10px; 
+    padding-top: 6px; 
+    font-size: 16px;
+    font-weight: bold;
 }
 
-.form-row input {
-    max-width: 200px;
+.input-area {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.input-area input {
     background-color: azure;
-    flex: 1;                    
     padding: 6px;
-    font-size: 14px;
+    font-size: 18px;
     border: 1px solid #ccc;
     border-radius: 4px;
     outline: none; 
     transition: border-color 0.3s; 
 }
-.form-row p {
-    font-size: 12px;
-    margin-left: 148px;
-    text-align: justify;
+
+.input-area p,
+.input-area .error {
+    margin-top: 4px;
+}
+
+.input-area p {
+        font-size: 12px;
+    color: #555;
+}
+
+.error {
+    color: red;
+    font-size: 15px;
+    text-align: left;
 }
 
 .form-row input:focus {
@@ -190,15 +206,6 @@ input[type="submit"]:hover {
     background-color: #0056b3; 
     border-color: #0056b3;
 }
-
-.error {
-    color: red;
-    font-size: 12px;
-    margin-left: 150px;
-    margin-top: 4px;
-    display: block;
-}
-
 /* 登録確認画面 */
 .regist-confirm-container {
     display: flex;
