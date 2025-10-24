@@ -79,8 +79,11 @@ header{
 }
 
 .login input[type="submit"] {
-    background-color: #007bff;
-    color: rgb(32, 20, 211);
+    padding: 10px;
+    font-weight: bold;
+    border-radius: 6px;
+    background-color: #1d09d1fb;
+    color: #fff;
     cursor: pointer;
     transition: background-color 0.3s;
 }
@@ -107,14 +110,6 @@ header{
     background-color: azure;
 }
 
-.login input[type="submit"] {
-    padding: 10px;
-    font-weight: bold;
-    font-size: 18px;
-    border-radius: 6px;
-    background-color: #0d9df056;
-    cursor: pointer;
-}
 /* ホバー時 */
 .login input[type="submit"]:hover {
     background-color: #1c81ecc0;
@@ -254,6 +249,10 @@ input[type="submit"]:hover {
     justify-content: center;
     height: 100vh;
     flex: 1;
+}
+
+.regist-complete-container {
+    font-size: 18px;
 }
 
 .regist-complete-container input[type="submit"] {

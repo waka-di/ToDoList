@@ -29,10 +29,14 @@
         }
     }
     if ($errors) {
-    echo implode('<br>', $errors);
-    echo '<br><a href="update.php">戻る</a>';
-    exit;
-}
+        $_SESSION['errors'] = $errors;
+        $_SESSION['form_data'] = [
+            'user_name' => $user_name,
+            'mail' => $mail
+        ];
+        header('Location: update.php');
+        exit;
+    }
 ?>
 <!DOCTYPE html>
 <html lang="ja">

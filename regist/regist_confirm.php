@@ -10,9 +10,8 @@
     $mail = trim($_POST['mail'] ?? '');
     $password = trim($_POST['password'] ?? '');
 
-    $errors = [];
-
     // バリデーション
+    $errors = [];
     if (trim($user_name) === '') {
         $errors['user_name'] = 'ニックネームを入力してください';
     }

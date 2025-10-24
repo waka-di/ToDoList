@@ -12,6 +12,10 @@
     $mail = $_POST['mail'] ?? '';
     $password = $_POST['password'] ?? '';
 
+    $stmt = $pdo->prepare("SELECT COUNT(*) FROM user_data WHERE mail = ? AND user_id != ?");
+    $stmt->execute([$mail, $user_id]);
+    $count = $stmt->fetchColumn();
+
     if ($count > 0) {
         $_SESSION['errors']['mail'] = 'このメールアドレスは既に登録されています。';
         $_SESSION['form_data'] = $_POST;

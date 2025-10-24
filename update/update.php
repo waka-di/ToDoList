@@ -12,14 +12,27 @@
     $stmt->execute([$user_id]);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    if (!$user) {
-        echo "ユーザー情報が見つかりません。";
-        exit;
+    $user_name = $user['user_name'];
+    $mail = $user['mail'];
+    $password = ''; 
+
+    $errors = [];
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['user_name'])) {
+        $user_name = $_POST['user_name'] ?? $user_name;
+        $mail      = $_POST['mail'] ?? $mail;
+        $password  = $_POST['password'] ?? '';
     }
 
-    $user_name = $_POST['user_name'] ?? $user['user_name'];
-    $mail      = $_POST['mail'] ?? $user['mail'];
-    $password  = $_POST['password'] ?? '';
+    if (!empty($_SESSION['form_data']) || !empty($_SESSION['errors'])) {
+        $errors = $_SESSION['errors'] ?? [];
+        $form_data = $_SESSION['form_data'] ?? [];
+        unset($_SESSION['errors'], $_SESSION['form_data']);
+
+        $user_name = $form_data['user_name'] ?? $user['user_name'];
+        $mail      = $form_data['mail'] ?? $user['mail'];
+        $password  = $form_data['password'] ?? '';
+    }
 ?>
 
 <!DOCTYPE html>
