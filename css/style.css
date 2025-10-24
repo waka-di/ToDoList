@@ -206,15 +206,20 @@ input[type="submit"]:hover {
     background-color: #0056b3; 
     border-color: #0056b3;
 }
+
 /* 登録確認画面 */
 .regist-confirm-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    padding-top: 150px;
+    padding-top: 220px;
     height: 100vh;
     flex: 1;
+}
+
+.regist-confirm-container th{
+    text-align: right;
 }
 
 .regist-confirm-container .precautions{

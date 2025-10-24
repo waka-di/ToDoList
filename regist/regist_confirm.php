@@ -71,7 +71,7 @@ if (!empty($errors)) {
     <div class="regist-confirm-container">
         <table>
             <tr>
-                <th>表示名<br>（ニックネーム）</th>
+                <th>ニックネーム</th>
                 <td>：<?= htmlspecialchars($user_name, ENT_QUOTES, 'UTF-8') ?></td>
             </tr>
             <tr>
@@ -84,7 +84,7 @@ if (!empty($errors)) {
             </tr>
         </table>
         <div class="precautions">
-            <p>※このサイトは皆様に楽しい一日を<br>過ごしていただくために作られました。<br>他の方を傷つけるような投稿や個人情報などを<br>投稿しないようお願い申し上げます。</p>
+            <p>※このサイトは皆様に楽しい一日を<br>　過ごしていただくために作られました。<br>　他の方を傷つけるような投稿や個人情報などを<br>　投稿しないようお願い申し上げます。</p>
         </div>
         <div class="button-group">
             <form action="regist.php" method="post">
