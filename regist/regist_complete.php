@@ -18,6 +18,8 @@
         exit;
     }
 
+    try {
+
     $stmt = $pdo->prepare("SELECT COUNT(*) FROM user_data WHERE mail = ?");
     $stmt->execute([$mail]);
     $count = $stmt->fetchColumn();
@@ -35,6 +37,13 @@
     $user_id = $pdo->lastInsertId();
     $_SESSION['user_id'] = $user_id;
     $_SESSION['user_name'] = $user_name;
+
+    } 
+    catch (PDOException $e) {
+        $_SESSION['error'] = 'エラーが発生したためアカウント登録できません。';
+        header('Location: regist.php');
+        exit;
+    }
 ?>
 
 <!DOCTYPE html>
