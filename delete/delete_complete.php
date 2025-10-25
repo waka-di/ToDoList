@@ -17,16 +17,12 @@ try {
     $stmt = $pdo->prepare("DELETE FROM user_data WHERE user_id=?");
     $stmt->execute([$user_id]);
 
-    $pdo->commit();
-
     session_destroy();
 
 } 
-atch (PDOException $e) {
-    $pdo->rollBack();
-
+catch (PDOException $e) {
     $_SESSION['error_message'] = "エラーが発生したためアカウント削除できません。";
-    header('Location: ../index.php');
+    header('Location: delete.php');
     exit;
 }
 ?>

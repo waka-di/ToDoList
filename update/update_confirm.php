@@ -69,7 +69,7 @@
     <div class="update-confirm-container">
         <table>
             <tr>
-                <th>表示名<br>（ニックネーム）</th>
+                <th>ニックネーム</th>
                 <td>：<?= htmlspecialchars($user_name) ?></td>
             </tr>
             <tr>

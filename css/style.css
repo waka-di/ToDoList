@@ -548,7 +548,7 @@ button:hover {
 }
 
 .update-form {
-    max-width: 404px;
+    max-width: 435px;
     text-align: center;
 }
 
@@ -621,7 +621,7 @@ button:hover {
     align-items: center;
     justify-content: flex-start;
     min-height: 90vh;
-    padding-top: 100px;
+    padding-top: 185px;
     flex: 1;
 }
 
@@ -690,8 +690,12 @@ button:hover {
     align-items: center;
     justify-content: flex-start;
     min-height: 90vh;
-    padding-top: 150px;
+    padding-top: 185px;
     flex: 1;
+}
+
+.delete-confirm-container{
+    font-size: 20px;
 }
 
 /* 削除完了画面 */
