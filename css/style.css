@@ -38,16 +38,54 @@ header{
     text-align: left;
 }
 
+.mypage_link{
+    font-family:'Caveat', sans-serif;
+    font-size: 25px;
+    padding-top: 5px;
+    font-weight: bold;
+}
+
+.mypage_link a{
+    text-decoration: none;
+}
+
 h1{
     font-family:'Hachi Maru Pop', sans-serif;
     margin-bottom: 50px;
 }
 
+.form-row {
+    display: flex; 
+    margin-bottom: 15px;
+}
+
+.form-row label {
+    width: 140px; 
+    text-align: right;
+    margin-right: 10px; 
+    padding-top: 6px; 
+    font-size: 16px;
+    font-weight: bold;
+}
+
+input {
+    padding: 7px;
+    font-size: 18px;
+    border: 2px solid #ccc;
+    border-radius: 6px;
+    background-color: azure;
+}
+
+input:focus {
+    border-color: #4d90fe;
+}
+
 /* ボタン */
 input[type="submit"] {
+    display: block; 
+    margin: 20px auto 0; 
     padding: 10px;   
     width: 93px;       
-    font-weight: bold;
     color: #fff; 
     background-color: #007BFF;
     border: 2px solid #007BFF; 
@@ -125,10 +163,6 @@ input[type="submit"]:hover {
     background-color: azure;
 }
 
-.login input:focus {
-    border-color: #4d90fe;
-}
-
 /* 登録画面 */
 .regist-container {
     display: flex;
@@ -144,37 +178,10 @@ input[type="submit"]:hover {
     text-align: center;
 }
 
-input[type="submit"] {
-    display: block; 
-    margin: 20px auto 0; 
-}
-
-.form-row {
-    display: flex; 
-    margin-bottom: 15px;
-}
-
-.form-row label {
-    width: 140px; 
-    text-align: right;
-    margin-right: 10px; 
-    padding-top: 6px; 
-    font-size: 16px;
-    font-weight: bold;
-}
-
 .input-area {
     display: flex;
     flex-direction: column;
     flex: 1;
-}
-
-.input-area input {
-    padding: 7px;
-    font-size: 18px;
-    border: 2px solid #ccc;
-    border-radius: 6px;
-    background-color: azure;
 }
 
 .input-area p,
@@ -191,10 +198,6 @@ input[type="submit"] {
     color: red;
     font-size: 15px;
     text-align: left;
-}
-
-.form-row input:focus {
-    border-color: #007BFF;
 }
 
 /* 登録確認画面 */
@@ -330,6 +333,7 @@ input[type="submit"] {
 .post-form {
     margin-top: 20px;
     font-family:'Hachi Maru Pop', sans-serif;
+    max-width: 350px;
 }
 
 textarea {
@@ -449,14 +453,8 @@ button:hover {
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 6px;    
-    align-items: flex-start;
     border: 1px solid #ccc;
     gap: 10px;
-}
-
-.mypost-item div {
-    flex: 1;
-    word-break: break-word; 
 }
 
 .delete-btn {
@@ -465,7 +463,6 @@ button:hover {
     border: none;
     padding: 5px 10px;
     cursor: pointer;
-    font-weight: bold;
     white-space: nowrap;
     align-self: center;
 }
@@ -475,72 +472,24 @@ button:hover {
 }
 
 /* 変更画面 */
-.update-header{
-    display: flex;
-    justify-content: space-between;
-    max-width: 82rem;
-    width: 100%;
-    margin: 20px 0 50px;
-    padding-left: 20px;
-    padding-right: 20px;
-}
-
 .update-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    min-height: 90vh;
+    height: 90vh;
     padding-top: 100px;
     flex: 1;
 }
 
 .update-form {
     max-width: 435px;
-    text-align: center;
-}
-
-.update-form input[type="submit"] {
-    display: block; 
-    margin: 20px auto 0; 
-    padding: 8px 16px;          
-    font-size: 16px; 
-    color: #fff; 
-    background-color: #007BFF;
-    border: 2px solid #007BFF; 
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background-color 0.3s, border-color 0.3s;
-}
-
-.update-form input[type="submit"]:hover {
-    background-color: #0056b3; 
-    border-color: #0056b3;
 }
 
 .update-form .form-row {
     display: flex; 
     align-items: center; 
-    justify-content: flex-start; 
-    margin-bottom: 15px;
     flex-wrap: wrap;
-}
-
-.update-form .form-row label {
-    width: 140px; 
-    text-align: right;
-    margin-right: 10px; 
-}
-
-.update-form .form-row input {
-    max-width: 200px;
-    background-color: azure;
-    flex: 1;                    
-    padding: 6px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    transition: border-color 0.3s; 
 }
 
 .update-form .form-row p {
@@ -568,6 +517,14 @@ button:hover {
     flex: 1;
 }
 
+.btn-wrapupdate-header{
+    max-width: 82rem;
+}
+    
+.update-confirm-container th{
+    text-align: right;
+}
+
 /* 変更完了画面 */
 .update-complete-container {
     display: flex;
@@ -575,45 +532,29 @@ button:hover {
     align-items: center;
     justify-content: flex-start;
     min-height: 90vh;
-    padding-top: 300px;
+    padding-top: 250px;
     flex: 1;
     font-family:'Hachi Maru Pop', sans-serif;
     font-weight: bold;
 }
 .update-complete-container p{
     font-size: 50px;
+    margin-bottom: 27px;
+}
+
+.update-complete-container input[type="submit"] {
+    width: 157px;
 }
 
 /* 削除画面 */
-.delete-header{
-    display: flex;
-    justify-content: space-between;
-    max-width: 82rem;
-    width: 100%;
-    margin: 20px 0 50px;
-    padding-left: 20px;
-    padding-right: 20px;
-}
-.mypage_link{
-    font-family:'Caveat', sans-serif;
-    text-align:right;
-    font-size: 25px;
-    padding-top: 5px;
-    font-weight: bold;
-}
 .delete-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    min-height: 90vh;
+    height: 90vh;
     padding-top: 100px;
     flex: 1;
-}
-
-.delete-container h1{
-    font-family:'Hachi Maru Pop', sans-serif;
-    margin-bottom: 20px;
 }
 
 .delete-container table{
@@ -648,12 +589,16 @@ button:hover {
     align-items: center;
     justify-content: flex-start;
     min-height: 90vh;
-    padding-top: 300px;
+    padding-top: 250px;
     flex: 1;
     font-family:'Hachi Maru Pop', sans-serif;
     font-weight: bold;
 }
 
 .delete-complete-container p{
-    font-size: 30px;
+    font-size: 50px;
+}
+
+.delete-complete-container input[type="submit"] {
+    width: 167px;
 }
