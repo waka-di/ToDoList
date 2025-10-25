@@ -46,12 +46,10 @@ if (!empty($errors)) {
 <!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&&family=Hachi+Maru+Pop&family=Murecho:wght@100..900&family=Murecho:wght@100..900&family=Noto+Sans+JP:wght@100..900&family=Outfit:wght@100..900&family=Playwrite+DE+Grund+Guides&family=Poppins:ital,wght@0,700;0,800;1,700;1,800&display=swap" rel="stylesheet">
 
 <!-- リセットCSS -->
 <link rel="stylesheet" href="https://unpkg.com/ress@4.0.0/dist/ress.min.css">
-<!-- Bootstrap Icons -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 
 <link rel="stylesheet" href="../css/style.css">
 
@@ -68,6 +66,7 @@ if (!empty($errors)) {
 <!-- メイン -->
 <main class="regist-confirm">
     <div class="regist-confirm-container">
+        <h1>アカウント情報登録</h1>
         <table>
             <tr>
                 <th>ニックネーム</th>

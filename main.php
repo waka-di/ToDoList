@@ -98,8 +98,6 @@
 
 <!-- リセットCSS -->
 <link rel="stylesheet" href="https://unpkg.com/ress@4.0.0/dist/ress.min.css">
-<!-- Bootstrap Icons -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 
 <link rel="stylesheet" href="css/style.css">
 
@@ -107,12 +105,12 @@
 
 <body>
 <!-- ヘッダー -->
-<header class="main-header">
+<header class="common-header">
     <div class="logo">
             <img src="images/logo.png" alt="WHO’S ToDo List">
     </div>
     <div class="page_link">
-        <a href="mypage.php">My page</a>
+        <a href="mypage.php">My Page</a>
         <a href="logout.php">Logout</a>
     </div>
 </header>

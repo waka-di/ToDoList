@@ -36,12 +36,12 @@ $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <body>
 <!-- ヘッダー -->
-<header class="mypage-header">
+<header class="common-header">
     <div class="logo">
             <img src="images/logo.png" alt="WHO’S ToDo List">
     </div>
     <div class="mainpage_link">
-        <a href="main.php">Main page</a>
+        <a href="main.php">Main Page</a>
     </div>
 </header>
 
