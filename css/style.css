@@ -82,7 +82,7 @@ header{
     padding: 10px;
     font-weight: bold;
     border-radius: 6px;
-    background-color: #1d09d1fb;
+    background-color: #253bfcfb;
     color: #fff;
     cursor: pointer;
     transition: background-color 0.3s;
@@ -112,7 +112,7 @@ header{
 
 /* ホバー時 */
 .login input[type="submit"]:hover {
-    background-color: #1c81ecc0;
+    background-color: #1d09d1fb;
 }
 
 /* 登録画面 */
@@ -453,7 +453,7 @@ button:hover {
 }
 
 .sidebar {
-    width: 25%;
+    width: 28%;
 }
 
 .sidebar h3{
@@ -486,6 +486,7 @@ button:hover {
 
 .post-list {
     width: 70%;
+    padding-left: 27px;
 }
 
 .mypost-item {
@@ -670,6 +671,16 @@ button:hover {
 .delete-container h1{
     font-family:'Hachi Maru Pop', sans-serif;
     margin-bottom: 20px;
+}
+
+.delete-container table{
+    font-size: 20px;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+}
+
+.delete-container th{
+    text-align: right;
 }
 
 /* 削除確認画面 */

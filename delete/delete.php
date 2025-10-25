@@ -55,7 +55,7 @@
         <h1>アカウント情報削除</h1>
         <table>
             <tr>
-                <th>表示名<br>（ニックネーム）</th>
+                <th>ニックネーム</th>
                 <td>：<?= htmlspecialchars($user_name, ENT_QUOTES, 'UTF-8') ?></td>
             </tr>
             <tr>
