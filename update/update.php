@@ -4,7 +4,8 @@
 
     $user_id = $_SESSION['user_id'] ?? null;
     if (!$user_id) {
-        header('Location: index.php'); 
+        $_SESSION['error'] = "不正なアクセスです";
+        header('Location: ../index.php'); 
         exit;
     }
 

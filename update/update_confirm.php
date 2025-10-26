@@ -3,7 +3,8 @@
 
     $user_id = $_SESSION['user_id'] ?? null;
     if (!$user_id) {
-        header('Location: index.php');
+        $_SESSION['error'] = "不正なアクセスです";
+        header('Location: ../index.php');
         exit;
     }
 
@@ -23,7 +24,7 @@
     }
     if ($password !== '') {
         if (!preg_match("/^[a-zA-Z0-9]+$/", $password)) {
-            $errors['password'] = 'パスワードは半角英数字のみ可能です';
+            $errors['password'] = 'パスワードは半角英数字、-、@のみ使用可能です';
         } else {
             $password_hash = password_hash($password, PASSWORD_DEFAULT);
         }
