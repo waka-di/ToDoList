@@ -21,7 +21,7 @@ class PostDTO {
     public function setUserId($user_id) { $this->user_id = $user_id; }
 
     public function getContent() { return $this->content; }
-    public function setContent($mail) { $this->content = $content; }
+    public function setContent($content) { $this->content = $content; }
 
     public function getPostDate() { return $this->post_date; }
     public function setPostDate($post_date) { $this->post_date = $post_date; }
