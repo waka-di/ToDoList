@@ -1,7 +1,7 @@
 <?php
 $host = 'localhost';
-$dbname = 'whostodolist_todolist';
-$user = 'whostodolist_todolist';
+$dbname = 'todo_list';
+$user = 'root';
 $pass = 'disql';
 
 try {
