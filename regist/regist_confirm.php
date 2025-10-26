@@ -57,7 +57,7 @@ if (!empty($errors)) {
 
 <body>
 <!-- ヘッダー -->
-<header class="header">
+<header class="common-header">
     <div class="logo">
             <img src="../images/logo.png" alt="WHO’S ToDo List">
     </div>
