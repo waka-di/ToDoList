@@ -3,14 +3,12 @@ class PostDTO {
     private $post_id;
     private $user_id;
     private $content;
-    private $post_date;
 
     // コンストラクタ
-    public function __construct($post_id = null, $user_id = '', $content = '', $post_date = '') {
+    public function __construct($post_id = null, $user_id = '', $content = '') {
         $this->post_id = $post_id;
         $this->user_id = $user_id;
         $this->content = $content;
-        $this->post_date = $post_date;
     }
 
     // getter / setter
@@ -22,8 +20,5 @@ class PostDTO {
 
     public function getContent() { return $this->content; }
     public function setContent($content) { $this->content = $content; }
-
-    public function getPostDate() { return $this->post_date; }
-    public function setPostDate($post_date) { $this->post_date = $post_date; }
 }
 ?>
