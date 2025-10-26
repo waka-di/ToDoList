@@ -12,6 +12,6 @@ try {
         [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
     );
 } catch (PDOException $e) {
-    echo "DB接続エラー: " . $e->getMessage();
+    echo "データベースに接続できませんでした。時間をおいて再度お試しください。";
     exit;
 }
