@@ -4,15 +4,13 @@ class User {
     private $user_name;
     private $mail;
     private $password;
-    private $insert_date;
 
     // コンストラクタ
-    public function __construct($user_id = null, $user_name = '', $mail = '', $password = '', $insert_date = '') {
+    public function __construct($user_id = null, $user_name = '', $mail = '', $password = '') {
         $this->user_id = $user_id;
         $this->user_name = $user_name;
         $this->mail = $mail;
         $this->password = $password;
-        $this->insert_date = $insert_date;
     }
 
     // getter / setter
@@ -27,8 +25,5 @@ class User {
 
     public function getPassword() { return $this->password; }
     public function setPassword($password) { $this->password = $password; }
-
-    public function getInsertDate() { return $this->insert_date; }
-    public function setInsertDate($insert_date) { $this->insert_date = $insert_date; }
 }
 ?>
