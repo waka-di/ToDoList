@@ -14,6 +14,7 @@ body {
     background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;
+    min-height: 100vh;
 }
 
 header{
@@ -28,6 +29,10 @@ header{
     margin: 20px 0 50px;
     padding-left: 20px;
     padding-right: 20px;
+}
+
+main{
+    flex: 1;
 }
 
 .logo img {
@@ -102,7 +107,6 @@ input[type="submit"]:hover {
 
 /* フッター */
 .footer{
-    display: block;
     background-color: #e7e7e7;
     color: white;
     text-align: center;
@@ -119,8 +123,8 @@ input[type="submit"]:hover {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 90vh;
     flex: 1;
+    padding-bottom: 20px;
 }
 
 .regist_link{
@@ -132,7 +136,7 @@ input[type="submit"]:hover {
 .top-main {
     display: flex;
     align-items: center; 
-    height: 100vh; 
+    flex: 1;
 }
 
 .title img {
@@ -169,8 +173,9 @@ input[type="submit"]:hover {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 90vh;
     flex: 1;
+    padding-top: 100px;
+    padding-bottom: 20px;
 }
 
 .regist-form {
@@ -206,8 +211,9 @@ input[type="submit"]:hover {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 90vh;
     flex: 1;
+    padding-top: 100px;
+    padding-bottom: 20px;
 }
 
 .regist-confirm-container th{
@@ -234,8 +240,8 @@ input[type="submit"]:hover {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 90vh;
     flex: 1;
+    padding-bottom: 20px;
 }
 
 .regist-complete-container {
@@ -269,7 +275,7 @@ input[type="submit"]:hover {
     width: 100%;
     padding-left: 100px;
     padding-right: 100px;
-    height: 100vh;
+    padding-bottom: 20px;
 }
 
 .calendar-container h1{
@@ -407,7 +413,8 @@ button:hover {
     box-sizing: border-box; 
     padding-left: 200px;
     padding-right: 200px;
-    min-height: 90vh;
+    flex: 1;
+    padding-bottom: 20px;
 }
 
 .sidebar {
@@ -477,10 +484,10 @@ button:hover {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
-    height: 90vh;
+    justify-content: center;
     padding-top: 100px;
     flex: 1;
+    padding-bottom: 20px;
 }
 
 .update-form {
@@ -513,9 +520,9 @@ button:hover {
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    min-height: 90vh;
     padding-top: 185px;
     flex: 1;
+    padding-bottom: 20px;
 }
 
 .btn-wrapupdate-header{
@@ -531,12 +538,11 @@ button:hover {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
-    min-height: 90vh;
-    padding-top: 250px;
+    justify-content: center;
     flex: 1;
     font-family:'Hachi Maru Pop', sans-serif;
     font-weight: bold;
+    padding-bottom: 20px;
 }
 .update-complete-container p{
     font-size: 50px;
@@ -552,10 +558,10 @@ button:hover {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
-    height: 90vh;
+    justify-content: center;
     padding-top: 100px;
     flex: 1;
+    padding-bottom: 20px;
 }
 
 .delete-container table{
@@ -574,13 +580,10 @@ button:hover {
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    min-height: 90vh;
     padding-top: 185px;
     flex: 1;
-}
-
-.delete-confirm-container{
     font-size: 20px;
+    padding-bottom: 20px;
 }
 
 /* 削除完了画面 */
@@ -588,12 +591,11 @@ button:hover {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
-    min-height: 90vh;
-    padding-top: 250px;
+    justify-content: center;
     flex: 1;
     font-family:'Hachi Maru Pop', sans-serif;
     font-weight: bold;
+    padding-bottom: 20px;
 }
 
 .delete-complete-container p{
